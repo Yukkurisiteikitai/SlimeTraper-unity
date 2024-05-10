@@ -1,0 +1,120 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyController : MonoBehaviour
+{
+    [SerializeField] private TrapItem spia;
+    [SerializeField] private float damaga_e;
+    [SerializeField] private EnemyItem enemydate;
+
+    public enum JANKEN_TYPE
+    {
+        shife = 0,
+        gost = 1,
+        GOd = 2,
+    }
+
+    private Transform enemy_t;
+
+    public GameObject target;
+    public Transform target_t;
+    public float speed;
+    public float HP = 10;
+    private bool life = true;
+
+    public SpriteRenderer enemyRender;
+
+    private float timer = 0;
+
+    public Sprite[] enemys = new Sprite[2];
+
+    private PlayerController target_script;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        target = GameObject.Find("slimeBase");
+        //target_t = target.GetComponent<Transform>();
+        enemy_t = GetComponent<Transform>();
+
+        target_script = target.GetComponent<PlayerController>();
+
+
+        damaga_e = spia.TrapList[0].damage;
+        //enemyRender = GetComponent<SpriteRenderer>();
+
+        HP = enemydate.DataList[0].Attack;
+        speed = enemydate.DataList[0].speed;
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        life = target_script.NowMove;
+        if (life == true) {
+            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+
+            //MoveEnemy();
+        }
+        timer += Time.deltaTime;
+        if(HP <= 3)
+        {
+            StartCoroutine("FlashNoooooo");
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "trap")
+        {
+            //HP -= damaga_e;
+            HP -= collision.GetComponent<TrapController>().damage;
+            if(HP <= 0)
+            {
+                life = false;
+                GetComponent<SpriteRenderer>().sprite = enemys[1];
+                StartCoroutine("Dealete");
+            }
+        }
+        enemyRender.enabled = true;
+        
+
+    }
+    IEnumerator FlashNoooooo()
+    {
+        enemyRender.enabled = false;
+        yield return new WaitForSeconds(3);
+        enemyRender.enabled = true;
+    }IEnumerator Dealete()
+    {
+        //after 4 second Delete addObject
+        yield return new WaitForSeconds(4);
+        Destroy(gameObject);
+    }//IEnumerable Damege()
+    //{
+        
+    //}
+    public void MoveEnemy()
+    {
+        target_t = target.GetComponent<Transform>();
+        // プレイヤーの動きと完全一致して動く
+        if (transform.position.x > target_t.position.x)
+        {
+            transform.Translate(-speed, 0, 0);
+        }
+        if (enemy_t.position.x < target_t.position.x)
+        {
+            transform.Translate(speed, 0, 0);
+        }
+        if (enemy_t.position.y > target_t.position.y)
+        {
+            transform.Translate(0, -speed, 0);
+        }
+        if (enemy_t.position.y < target_t.position.y)
+        {
+            transform.Translate(0, speed, 0);
+        }
+    }
+    
+}

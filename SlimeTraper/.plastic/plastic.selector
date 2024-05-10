@@ -1,0 +1,4 @@
+repository "SlimeTraper@Yukkuri4649@cloud"
+  path "/"
+    br "/main"
+    co "/main"
