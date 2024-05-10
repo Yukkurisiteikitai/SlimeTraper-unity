@@ -70,9 +70,10 @@ public class EnemyController : MonoBehaviour
         {
             //HP -= damaga_e;
             HP -= collision.GetComponent<TrapController>().damage;
-            if(HP <= 0)
+            if(HP <= 0&&life==true)
             {
                 life = false;
+                GsmeManeger.EnemyCount--;
                 GetComponent<SpriteRenderer>().sprite = enemys[1];
                 StartCoroutine("Dealete");
             }
@@ -88,8 +89,10 @@ public class EnemyController : MonoBehaviour
         enemyRender.enabled = true;
     }IEnumerator Dealete()
     {
+        
         //after 4 second Delete addObject
         yield return new WaitForSeconds(4);
+        //GsmeManeger.EnemyCount--;
         Destroy(gameObject);
     }//IEnumerable Damege()
     //{

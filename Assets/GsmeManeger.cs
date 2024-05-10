@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class GsmeManeger : MonoBehaviour
@@ -18,6 +19,10 @@ public class GsmeManeger : MonoBehaviour
 
     [SerializeField] public StageDate stagedate;
     public int stageNumber;
+
+    public Text EnemyText;
+    public static int EnemyCount;
+
 
     int[,] map = new  int[9,17] {
         { 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2,2 },
@@ -65,6 +70,7 @@ public class GsmeManeger : MonoBehaviour
                     case 2:
                         Instantiate(enemy, new Vector3(x, y, 0), Quaternion.identity);
                         //Debug.Log("enemy");
+                        EnemyCount++;
                         break;
                     case 3:
                         Instantiate(trap, new Vector3(x, y, 0), Quaternion.identity);
@@ -78,11 +84,29 @@ public class GsmeManeger : MonoBehaviour
             y_number++;
         }
 
+        PrintEnemyCount();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        PrintEnemyCount();
+
+        if(EnemyCount < 0)
+        {
+            Debug.LogError("Why EnemyCount < 0");
+        }
+    }
+
+    public void PrintEnemyCount()
+    {
+        EnemyText.text = EnemyCount.ToString();
+    }
+
+    public void DestroyEnemy()
+    {
+        EnemyCount--;
+        PrintEnemyCount();
     }
 }
