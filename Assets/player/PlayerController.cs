@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     public bool NowMove;
 
 
+    public bool NothingEnemy;
+
     private SpriteRenderer sliem_sprite;
     public Sprite[] slimes = new Sprite[4];
     //public SpriteRenderer[] slime_heart = new SpriteRenderer[3];
@@ -172,7 +174,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Hello hall");
             life = false;
         }
-        if(heart > 0)
+        if(heart > 0&& NothingEnemy == false)
         {
             slime_heart[health].SetActive(false);
             heart -= 1;
