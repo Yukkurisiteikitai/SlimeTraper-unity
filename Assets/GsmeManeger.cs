@@ -95,7 +95,8 @@ public class GsmeManeger : MonoBehaviour
 
         if(EnemyCount < 0)
         {
-            Debug.LogError("Why EnemyCount < 0");
+            Debug.Log("Why EnemyCount < 0");
+
         }
     }
 
