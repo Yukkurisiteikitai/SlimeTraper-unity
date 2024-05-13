@@ -23,6 +23,8 @@ public class GsmeManeger : MonoBehaviour
     public Text EnemyText;
     public static int EnemyCount;
 
+    private int mapnumberMix = 0;
+
 
     int[,] map = new  int[9,17] {
         { 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2,2 },
@@ -42,7 +44,7 @@ public class GsmeManeger : MonoBehaviour
     void Start()
     {
 
-        stageNumber = MenuManager.menuStageNumber;
+        //stageNumber = MenuManager.menuStageNumber;
 
 
         for(int y = 4; y >=  -5; y--)
@@ -67,17 +69,33 @@ public class GsmeManeger : MonoBehaviour
                         player.position = new Vector3(x, y, 0);
                         //Debug.Log("player");
                         break;
+                        /*
                     case 2:
                         Instantiate(enemy, new Vector3(x, y, 0), Quaternion.identity);
                         //Debug.Log("enemy");
                         EnemyCount++;
                         break;
+                        */
                     case 3:
                         Instantiate(trap, new Vector3(x, y, 0), Quaternion.identity);
                         //Debug.Log("trap");
                         break;
                         
+                        
                 }
+                mapnumberMix = mapNumber % 100;
+                Debug.Log("mapnumberMix" +mapnumberMix);
+
+                int mapcheack = mapNumber - mapnumberMix;
+                Debug.Log("mapcheack" + mapcheack);
+                if(mapcheack == 200)
+                {
+                    EnemyController.enemyNumber = mapnumberMix;
+                    Instantiate(enemy, new Vector3(x, y, 0), Quaternion.identity);
+                    EnemyCount++;
+                }
+
+                
                 x_number++;
                 
             }

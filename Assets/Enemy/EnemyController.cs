@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float damaga_e;
     [SerializeField] private EnemyItem enemydate;
 
+    public static int enemyNumber = 0;
+
     public enum JANKEN_TYPE
     {
         shife = 0,
@@ -41,12 +43,14 @@ public class EnemyController : MonoBehaviour
         target_script = target.GetComponent<PlayerController>();
 
 
-        damaga_e = spia.TrapList[0].damage;
+        damaga_e = spia.TrapList[enemyNumber].damage;
         //enemyRender = GetComponent<SpriteRenderer>();
 
-        HP = enemydate.DataList[0].Attack;
-        speed = enemydate.DataList[0].speed;
-
+        HP = enemydate.DataList[enemyNumber].Attack;
+        speed = enemydate.DataList[enemyNumber].speed;
+        enemyRender.sprite = enemydate.DataList[enemyNumber].sprite_nomal;
+        enemys[0] = enemydate.DataList[enemyNumber].sprite_nomal;
+        enemys[1] = enemydate.DataList[enemyNumber].sprite_dealete;
     }
 
     // Update is called once per frame
@@ -68,7 +72,7 @@ public class EnemyController : MonoBehaviour
     {
         if(collision.tag == "trap")
         {
-            //HP -= damaga_e;
+            // Damege Processing
             HP -= collision.GetComponent<TrapController>().damage;
             if(HP <= 0&&life==true)
             {
@@ -94,10 +98,8 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(4);
         //GsmeManeger.EnemyCount--;
         Destroy(gameObject);
-    }//IEnumerable Damege()
-    //{
-        
-    //}
+    }
+    /*
     public void MoveEnemy()
     {
         target_t = target.GetComponent<Transform>();
@@ -119,5 +121,6 @@ public class EnemyController : MonoBehaviour
             transform.Translate(0, speed, 0);
         }
     }
+    */
     
 }

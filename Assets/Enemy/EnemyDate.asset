@@ -35,7 +35,7 @@ MonoBehaviour:
     Hp: 20
     Attack: 1
     Defense: 12
-    speed: 0
+    speed: 300
     Exp: 0
     sprite_nomal: {fileID: 21300000, guid: cc57e5abfcee1402d9ca3f4b0cc62798, type: 3}
     sprite_damage: {fileID: 21300000, guid: cc57e5abfcee1402d9ca3f4b0cc62798, type: 3}
@@ -44,25 +44,25 @@ MonoBehaviour:
     Hp: 15
     Attack: 1
     Defense: 12
-    speed: 0
+    speed: 30
     Exp: 0
     sprite_nomal: {fileID: 21300000, guid: 1047bc430f4db40bd99794fca12a6dce, type: 3}
     sprite_damage: {fileID: 21300000, guid: 1047bc430f4db40bd99794fca12a6dce, type: 3}
     sprite_dealete: {fileID: 21300000, guid: 5d99d9e98096a493a8811db135804cf0, type: 3}
   - Id: PixelBat
     Hp: 15
-    Attack: 1
+    Attack: 4000
     Defense: 12
-    speed: 0
+    speed: 103
     Exp: 0
     sprite_nomal: {fileID: 21300000, guid: 72b655a787487406db5c90f4176edfc2, type: 3}
     sprite_damage: {fileID: 21300000, guid: 72b655a787487406db5c90f4176edfc2, type: 3}
     sprite_dealete: {fileID: 21300000, guid: 5d99d9e98096a493a8811db135804cf0, type: 3}
   - Id: Joy
     Hp: 15
-    Attack: 1
+    Attack: 15
     Defense: 12
-    speed: 0
+    speed: 250
     Exp: 0
     sprite_nomal: {fileID: 21300000, guid: 1047bc430f4db40bd99794fca12a6dce, type: 3}
     sprite_damage: {fileID: 21300000, guid: 1047bc430f4db40bd99794fca12a6dce, type: 3}
