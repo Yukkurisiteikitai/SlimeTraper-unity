@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float damaga_e;
     [SerializeField] private EnemyItem enemydate;
 
+    //public List<int> enemyList;
+
     public static int enemyNumber = 0;
 
     public enum JANKEN_TYPE
@@ -33,9 +35,15 @@ public class EnemyController : MonoBehaviour
 
     private PlayerController target_script;
 
+    private GsmeManeger gm;
+
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.Find("GameManger").GetComponent<GsmeManeger>();
+        ;
+
+
         target = GameObject.Find("slimeBase");
         //target_t = target.GetComponent<Transform>();
         enemy_t = GetComponent<Transform>();
@@ -43,14 +51,20 @@ public class EnemyController : MonoBehaviour
         target_script = target.GetComponent<PlayerController>();
 
 
-        damaga_e = spia.TrapList[enemyNumber].damage;
-        //enemyRender = GetComponent<SpriteRenderer>();
+        damaga_e = spia.TrapList[0].damage;
+        enemyRender = GetComponent<SpriteRenderer>();
+        //enemyNumber = gm.enemyNumber;
+        Debug.Log(gm);
+        int eN = GsmeManeger.enemyNumber;
+        Debug.Log("eN" +eN);
 
-        HP = enemydate.DataList[enemyNumber].Attack;
-        speed = enemydate.DataList[enemyNumber].speed;
-        enemyRender.sprite = enemydate.DataList[enemyNumber].sprite_nomal;
-        enemys[0] = enemydate.DataList[enemyNumber].sprite_nomal;
-        enemys[1] = enemydate.DataList[enemyNumber].sprite_dealete;
+        HP = enemydate.DataList[eN].Attack;
+        speed = enemydate.DataList[eN].speed;
+        Debug.Log("enemyNumber" + eN);
+        enemyRender.sprite = enemydate.DataList[eN].sprite_nomal;
+        enemys[0] = enemydate.DataList[eN].sprite_nomal;
+        enemys[1] = enemydate.DataList[eN].sprite_dealete;
+        //enemyNumber = 0;
     }
 
     // Update is called once per frame

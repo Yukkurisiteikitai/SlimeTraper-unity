@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
         if(collision.tag == "enemy")
         {
             SpriteChange(3);
-            Debug.Log("NOOOOOOOOOoh");
+            //Debug.Log("NOOOOOOOOOoh");
             Damege();
         }
     }

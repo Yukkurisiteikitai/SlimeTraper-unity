@@ -17,12 +17,21 @@ public class GsmeManeger : MonoBehaviour
     public GameObject enemy;
     public GameObject trap;
 
+    public List<int> enemyList;
+
+
     [SerializeField] public StageDate stagedate;
     public int stageNumber;
 
     public Text EnemyText;
     public static int EnemyCount;
 
+    public static int enemyNumber = 0;
+    public int GetSetenemyNumber
+    {
+        get { return enemyNumber; }
+        //set { enemyNumber = value; }
+    }
     private int mapnumberMix = 0;
 
 
@@ -84,15 +93,19 @@ public class GsmeManeger : MonoBehaviour
                         
                 }
                 mapnumberMix = mapNumber % 100;
-                Debug.Log("mapnumberMix" +mapnumberMix);
+                //Debug.Log("mapnumberMix" +mapnumberMix);
 
                 int mapcheack = mapNumber - mapnumberMix;
-                Debug.Log("mapcheack" + mapcheack);
+                //Debug.Log("mapcheack" + mapcheack);
                 if(mapcheack == 200)
                 {
-                    EnemyController.enemyNumber = mapnumberMix;
+                    //EnemyController.enemyNumber = mapnumberMix;
+                    enemyNumber = mapnumberMix;
+                    //Debug.Log("enemyNumberG" + enemyNumber);
+                    //Debug.Log("CheckSmapnumberMix" + mapnumberMix);
                     Instantiate(enemy, new Vector3(x, y, 0), Quaternion.identity);
                     EnemyCount++;
+                    enemyList.Add(enemyNumber);
                 }
 
                 
