@@ -5,12 +5,16 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private TrapItem spia;
-    [SerializeField] private float damaga_e;
+    public float damaga_e;
     [SerializeField] private EnemyItem enemydate;
 
     //public List<int> enemyList;
 
-    public static int enemyNumber = 0;
+    public int enemyNumber = 0;
+    public static int enemyListNumber = 0;
+    private int enemyAll = GsmeManeger.EnemyCount;
+    
+
 
     public enum JANKEN_TYPE
     {
@@ -40,8 +44,13 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+
         gm = GameObject.Find("GameManger").GetComponent<GsmeManeger>();
-        ;
+        if(enemyListNumber < enemyAll) {
+            enemyNumber = gm.enemyList[enemyListNumber];
+            enemyListNumber++;
+        }
 
 
         target = GameObject.Find("slimeBase");
@@ -55,7 +64,7 @@ public class EnemyController : MonoBehaviour
         enemyRender = GetComponent<SpriteRenderer>();
         //enemyNumber = gm.enemyNumber;
         Debug.Log(gm);
-        int eN = GsmeManeger.enemyNumber;
+        int eN = enemyNumber;//GsmeManeger.enemyNumber;
         Debug.Log("eN" +eN);
 
         HP = enemydate.DataList[eN].Attack;
@@ -81,6 +90,8 @@ public class EnemyController : MonoBehaviour
         {
             StartCoroutine("FlashNoooooo");
         }
+
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

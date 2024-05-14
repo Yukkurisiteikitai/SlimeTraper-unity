@@ -17,7 +17,7 @@ public class GsmeManeger : MonoBehaviour
     public GameObject enemy;
     public GameObject trap;
 
-    public List<int> enemyList;
+    public List<int> enemyList = new List<int>();//@bag
 
 
     [SerializeField] public StageDate stagedate;
@@ -105,7 +105,7 @@ public class GsmeManeger : MonoBehaviour
                     //Debug.Log("CheckSmapnumberMix" + mapnumberMix);
                     Instantiate(enemy, new Vector3(x, y, 0), Quaternion.identity);
                     EnemyCount++;
-                    enemyList.Add(enemyNumber);
+                    enemyList.Add(enemyNumber);//@bag
                 }
 
                 
