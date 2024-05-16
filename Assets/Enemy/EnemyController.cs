@@ -29,7 +29,10 @@ public class EnemyController : MonoBehaviour
     public Transform target_t;
     public float speed;
     public float HP = 10;
-    private bool life = true;
+    public bool life = true;// before private
+    public bool go = false;
+
+    public string enemyId;
 
     public SpriteRenderer enemyRender;
 
@@ -51,6 +54,7 @@ public class EnemyController : MonoBehaviour
             enemyNumber = gm.enemyList[enemyListNumber];
             enemyListNumber++;
         }
+        enemyId = enemyNumber.ToString() + "nick" + rmd(0.0000001f,1.000000f);
 
 
         target = GameObject.Find("slimeBase");
@@ -79,10 +83,11 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        life = target_script.NowMove;
-        if (life == true) {
+        go = target_script.NowMove;
+        
+        if (life == true&&go==true) {
             transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-
+            
             //MoveEnemy();
         }
         timer += Time.deltaTime;
@@ -90,7 +95,7 @@ public class EnemyController : MonoBehaviour
         {
             StartCoroutine("FlashNoooooo");
         }
-
+        
         
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -101,6 +106,7 @@ public class EnemyController : MonoBehaviour
             HP -= collision.GetComponent<TrapController>().damage;
             if(HP <= 0&&life==true)
             {
+                //Debug.LogError("Death");
                 life = false;
                 GsmeManeger.EnemyCount--;
                 GetComponent<SpriteRenderer>().sprite = enemys[1];
@@ -123,7 +129,11 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(4);
         //GsmeManeger.EnemyCount--;
         Destroy(gameObject);
+    }float rmd(float mix,float max)
+    {
+        return Random.Range(mix, max);
     }
+    
     /*
     public void MoveEnemy()
     {

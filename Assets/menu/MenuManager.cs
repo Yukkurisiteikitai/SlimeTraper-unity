@@ -17,6 +17,7 @@ public class MenuManager : MonoBehaviour
     private bool changeSelect = false;
     bool goSelect = false;
 
+    
 
 
     private bool go = false;
@@ -26,7 +27,7 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -78,5 +79,12 @@ public class MenuManager : MonoBehaviour
     {
         selectButtne.position += new Vector3(0,speed * Time.deltaTime,0);
     }
-
+    public void GoToSence(string name)
+    {
+        SceneManager.LoadScene(name);
+    }
+    public void FixedUpdate()
+    {
+        
+    }
 }

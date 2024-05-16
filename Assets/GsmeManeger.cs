@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System;
 
 public class GsmeManeger : MonoBehaviour
@@ -13,9 +14,13 @@ public class GsmeManeger : MonoBehaviour
      * 2=　敵
      * 3=　トラップ
      */
+    public List<int> enemyManagerID = new List<int>();
+
     public Transform player;
     public GameObject enemy;
     public GameObject trap;
+
+    public GameObject menu;
 
     public List<int> enemyList = new List<int>();//@bag
 
@@ -54,7 +59,7 @@ public class GsmeManeger : MonoBehaviour
     {
 
         //stageNumber = MenuManager.menuStageNumber;
-
+        menu.SetActive(false);
 
         for(int y = 4; y >=  -5; y--)
         {
@@ -124,11 +129,16 @@ public class GsmeManeger : MonoBehaviour
     {
         PrintEnemyCount();
 
+        if(EnemyCount == 0)
+        {
+            menu.SetActive(true);
+        }
         if(EnemyCount < 0)
         {
             Debug.Log("Why EnemyCount < 0");
 
         }
+        
     }
 
     public void PrintEnemyCount()
@@ -140,5 +150,8 @@ public class GsmeManeger : MonoBehaviour
     {
         EnemyCount--;
         PrintEnemyCount();
+    }public void LoadSence(string name)
+    {
+        SceneManager.LoadScene(name);
     }
 }
