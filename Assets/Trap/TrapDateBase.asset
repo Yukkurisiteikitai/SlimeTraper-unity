@@ -31,3 +31,12 @@ MonoBehaviour:
     type: 3
     effect: 1
     HP: 100
+  - Trap_name: Bag
+    damage: 99999999
+    Attacksound: {fileID: 8300000, guid: 7c5674ce7caf14f4ab078dcc85c123b2, type: 3}
+    slowly: 0.6
+    sprite: {fileID: 21300000, guid: 06971f6d13aee456aa6ca42e1f5750f0, type: 3}
+    sprite_breack: {fileID: 21300000, guid: 06971f6d13aee456aa6ca42e1f5750f0, type: 3}
+    type: 4
+    effect: 3
+    HP: 1

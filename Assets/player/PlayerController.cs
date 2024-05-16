@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
         {
             //TrapChange
             TrapNumber++;
-            if(TrapNumber > 1)//TrapNumberMax
+            if(TrapNumber > 2)//TrapNumberMax
             {
                 TrapNumber = 0;
             }

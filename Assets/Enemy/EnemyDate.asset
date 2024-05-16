@@ -17,12 +17,12 @@ MonoBehaviour:
     Hp: 10
     Attack: 4
     Defense: 0
-    speed: 106
+    speed: 34
     Exp: 0
     sprite_nomal: {fileID: 21300000, guid: e89602c692ca04af5a2134ae3a5e38d8, type: 3}
     sprite_damage: {fileID: 21300000, guid: cb9330dbec9e0406194bf6a9b466f174, type: 3}
     sprite_dealete: {fileID: 21300000, guid: 57e131291843a465ba713633c099556c, type: 3}
-    wakeType: 1
+    wakeType: 2
     strongType: 3
   - Id: gorst
     Hp: 2147483647
@@ -68,14 +68,14 @@ MonoBehaviour:
     sprite_dealete: {fileID: 21300000, guid: 5d99d9e98096a493a8811db135804cf0, type: 3}
     wakeType: 3
     strongType: 1
-  - Id: Joy
+  - Id: wiserd
     Hp: 15
     Attack: 15
     Defense: 12
-    speed: 250
+    speed: 30
     Exp: 0
-    sprite_nomal: {fileID: 21300000, guid: 9167244fff35843df838b3fe8f37252c, type: 3}
-    sprite_damage: {fileID: 21300000, guid: 9167244fff35843df838b3fe8f37252c, type: 3}
+    sprite_nomal: {fileID: 21300000, guid: 99f29f77f48754a019f08704fa66490e, type: 3}
+    sprite_damage: {fileID: 21300000, guid: 99f29f77f48754a019f08704fa66490e, type: 3}
     sprite_dealete: {fileID: 21300000, guid: 5d99d9e98096a493a8811db135804cf0, type: 3}
     wakeType: 0
     strongType: 0

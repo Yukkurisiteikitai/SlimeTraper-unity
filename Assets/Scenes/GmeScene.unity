@@ -1489,7 +1489,7 @@ MonoBehaviour:
     PlayingTime: 0
     SetTrap: 0
   stagedate: {fileID: 11400000, guid: a728b9c1042e64972bf4719237af9374, type: 2}
-  stageNumber: 1
+  stageNumber: 2
   EnemyText: {fileID: 257109668}
 --- !u!4 &1473436873
 Transform:
