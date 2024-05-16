@@ -82,7 +82,7 @@ public class EnemyController : MonoBehaviour
 
         waketype = enemydate.DataList[eN].wakeType;
         strongtype = enemydate.DataList[eN].strongType;
-        HP = enemydate.DataList[eN].Attack;
+        HP = enemydate.DataList[eN].Hp;
         speed = enemydate.DataList[eN].speed;
         Debug.Log("enemyNumber" + eN);
         enemyRender.sprite = enemydate.DataList[eN].sprite_nomal;
@@ -106,11 +106,20 @@ public class EnemyController : MonoBehaviour
         {
             StartCoroutine("FlashNoooooo");
         }
-        
-        
+        if (HP <= 0 && life == true)
+        {
+            //Debug.LogError("Death");
+            life = false;
+            GsmeManeger.EnemyCount--;
+            GetComponent<SpriteRenderer>().sprite = enemys[1];
+            StartCoroutine("Dealete");
+        }
+
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if(collision.tag == "trap")
         {
             // Damege Processing
@@ -124,17 +133,13 @@ public class EnemyController : MonoBehaviour
                 HP -= collision.GetComponent<TrapController>().damage;
             }
 
-            if (HP <= 0&&life==true)
-            {
-                //Debug.LogError("Death");
-                life = false;
-                GsmeManeger.EnemyCount--;
-                GetComponent<SpriteRenderer>().sprite = enemys[1];
-                StartCoroutine("Dealete");
-            }
+            
         }
         enemyRender.enabled = true;
         
+        if(collision.tag == "bon") {
+            HP -= HP*0.75f;
+        }
 
     }
     IEnumerator FlashNoooooo()

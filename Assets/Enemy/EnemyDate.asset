@@ -36,7 +36,7 @@ MonoBehaviour:
     wakeType: 0
     strongType: 3
   - Id: FireDol
-    Hp: 20
+    Hp: 2
     Attack: 1
     Defense: 12
     speed: 300
@@ -58,8 +58,8 @@ MonoBehaviour:
     wakeType: 0
     strongType: 3
   - Id: PixelBat
-    Hp: 15
-    Attack: 4000
+    Hp: 4000
+    Attack: 232
     Defense: 12
     speed: 103
     Exp: 0
