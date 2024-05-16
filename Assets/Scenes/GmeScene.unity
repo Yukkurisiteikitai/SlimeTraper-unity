@@ -978,7 +978,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 486af76cc33ea4e3eb383fd24ee57cbc, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.468
-  m_Pitch: 1
+  m_Pitch: 1.5
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -1484,8 +1484,12 @@ MonoBehaviour:
   trap: {fileID: 5900589584218908299, guid: e66fe08b27ca94c4da73b97557204ca9, type: 3}
   menu: {fileID: 103800286}
   enemyList: 
+  total:
+    EnemyKill: 0
+    PlayingTime: 0
+    SetTrap: 0
   stagedate: {fileID: 11400000, guid: a728b9c1042e64972bf4719237af9374, type: 2}
-  stageNumber: 2
+  stageNumber: 1
   EnemyText: {fileID: 257109668}
 --- !u!4 &1473436873
 Transform:

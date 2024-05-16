@@ -22,6 +22,8 @@ MonoBehaviour:
     sprite_nomal: {fileID: 21300000, guid: e89602c692ca04af5a2134ae3a5e38d8, type: 3}
     sprite_damage: {fileID: 21300000, guid: cb9330dbec9e0406194bf6a9b466f174, type: 3}
     sprite_dealete: {fileID: 21300000, guid: 57e131291843a465ba713633c099556c, type: 3}
+    wakeType: 1
+    strongType: 3
   - Id: gorst
     Hp: 2147483647
     Attack: 890
@@ -31,6 +33,8 @@ MonoBehaviour:
     sprite_nomal: {fileID: 21300000, guid: 5759f2ce60dbe4014a661a84f0004e2c, type: 3}
     sprite_damage: {fileID: 21300000, guid: 5759f2ce60dbe4014a661a84f0004e2c, type: 3}
     sprite_dealete: {fileID: 21300000, guid: 5759f2ce60dbe4014a661a84f0004e2c, type: 3}
+    wakeType: 0
+    strongType: 3
   - Id: FireDol
     Hp: 20
     Attack: 1
@@ -40,6 +44,8 @@ MonoBehaviour:
     sprite_nomal: {fileID: 21300000, guid: c8ead339611d5424989ebf729989783c, type: 3}
     sprite_damage: {fileID: 21300000, guid: c8ead339611d5424989ebf729989783c, type: 3}
     sprite_dealete: {fileID: 21300000, guid: cc57e5abfcee1402d9ca3f4b0cc62798, type: 3}
+    wakeType: 2
+    strongType: 0
   - Id: Joy
     Hp: 15
     Attack: 1
@@ -49,6 +55,8 @@ MonoBehaviour:
     sprite_nomal: {fileID: 21300000, guid: 9167244fff35843df838b3fe8f37252c, type: 3}
     sprite_damage: {fileID: 21300000, guid: 1047bc430f4db40bd99794fca12a6dce, type: 3}
     sprite_dealete: {fileID: 21300000, guid: 5d99d9e98096a493a8811db135804cf0, type: 3}
+    wakeType: 0
+    strongType: 3
   - Id: PixelBat
     Hp: 15
     Attack: 4000
@@ -58,6 +66,8 @@ MonoBehaviour:
     sprite_nomal: {fileID: 21300000, guid: d751ad344d00f42b3a2eb864319be69a, type: 3}
     sprite_damage: {fileID: 21300000, guid: d751ad344d00f42b3a2eb864319be69a, type: 3}
     sprite_dealete: {fileID: 21300000, guid: 5d99d9e98096a493a8811db135804cf0, type: 3}
+    wakeType: 3
+    strongType: 1
   - Id: Joy
     Hp: 15
     Attack: 15
@@ -67,3 +77,5 @@ MonoBehaviour:
     sprite_nomal: {fileID: 21300000, guid: 9167244fff35843df838b3fe8f37252c, type: 3}
     sprite_damage: {fileID: 21300000, guid: 9167244fff35843df838b3fe8f37252c, type: 3}
     sprite_dealete: {fileID: 21300000, guid: 5d99d9e98096a493a8811db135804cf0, type: 3}
+    wakeType: 0
+    strongType: 0

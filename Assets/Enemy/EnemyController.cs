@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
     public int enemyNumber = 0;
     public static int enemyListNumber = 0;
     private int enemyAll = GsmeManeger.EnemyCount;
+    private TYPE waketype;
+    private TYPE strongtype;
     
 
 
@@ -32,6 +34,11 @@ public class EnemyController : MonoBehaviour
     public bool life = true;// before private
     public bool go = false;
 
+    public TYPE traptype;
+    
+    
+
+
     public string enemyId;
 
     public SpriteRenderer enemyRender;
@@ -48,6 +55,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         
+
 
         gm = GameObject.Find("GameManger").GetComponent<GsmeManeger>();
         if(enemyListNumber < enemyAll) {
@@ -71,6 +79,9 @@ public class EnemyController : MonoBehaviour
         int eN = enemyNumber;//GsmeManeger.enemyNumber;
         Debug.Log("eN" +eN);
 
+
+        waketype = enemydate.DataList[eN].wakeType;
+        strongtype = enemydate.DataList[eN].strongType;
         HP = enemydate.DataList[eN].Attack;
         speed = enemydate.DataList[eN].speed;
         Debug.Log("enemyNumber" + eN);
@@ -104,7 +115,16 @@ public class EnemyController : MonoBehaviour
         {
             // Damege Processing
             HP -= collision.GetComponent<TrapController>().damage;
-            if(HP <= 0&&life==true)
+            traptype = collision.GetComponent<TrapController>().traptype;
+            if(traptype == waketype)
+            {
+                HP -= collision.GetComponent<TrapController>().damage * 4;
+            }else
+            {
+                HP -= collision.GetComponent<TrapController>().damage;
+            }
+
+            if (HP <= 0&&life==true)
             {
                 //Debug.LogError("Death");
                 life = false;

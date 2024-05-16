@@ -18,8 +18,16 @@ MonoBehaviour:
     Attacksound: {fileID: 8300000, guid: e201cc7d4a56b4fed99c67dca1db57cd, type: 3}
     slowly: 3
     sprite: {fileID: 21300000, guid: c2ddeeedd35024029a6485789f71d744, type: 3}
+    sprite_breack: {fileID: 21300000, guid: d8abb3d35750b4b8ca5c1dfb299560c5, type: 3}
+    type: 1
+    effect: 0
+    HP: 10
   - Trap_name: poison
     damage: 100
     Attacksound: {fileID: 8300000, guid: 7c5674ce7caf14f4ab078dcc85c123b2, type: 3}
     slowly: 0.6
     sprite: {fileID: 21300000, guid: 5d961f7b5bb0346559e3b3b74bda7bae, type: 3}
+    sprite_breack: {fileID: 21300000, guid: 5d961f7b5bb0346559e3b3b74bda7bae, type: 3}
+    type: 3
+    effect: 1
+    HP: 100

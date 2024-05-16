@@ -5,10 +5,16 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 
+[Serializable]public class Total
+{
+    public int EnemyKill;
+    public float PlayingTime;
+    public int SetTrap;
+}
+
 public class GsmeManeger : MonoBehaviour
 {
     //map[y,x]  で管理してる
-
     /* 0= なんもない
      * 1=　プレイヤー
      * 2=　敵
@@ -24,6 +30,8 @@ public class GsmeManeger : MonoBehaviour
 
     public List<int> enemyList = new List<int>();//@bag
 
+    //total
+    public Total total;
 
     [SerializeField] public StageDate stagedate;
     public int stageNumber;
@@ -138,6 +146,16 @@ public class GsmeManeger : MonoBehaviour
             Debug.Log("Why EnemyCount < 0");
 
         }
+
+
+        if (Input.GetKey(KeyCode.Q))
+        {
+            if (Input.GetKey(KeyCode.E))
+            {
+                SceneManager.LoadScene("GmeScene");
+            }
+        }
+        
         
     }
 
@@ -153,5 +171,10 @@ public class GsmeManeger : MonoBehaviour
     }public void LoadSence(string name)
     {
         SceneManager.LoadScene(name);
+    }
+    void TotalGet()
+    {
+        total.EnemyKill = EnemyCount;
+        //total.SetTrap
     }
 }

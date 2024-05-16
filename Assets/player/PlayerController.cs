@@ -139,7 +139,20 @@ public class PlayerController : MonoBehaviour
             Death();
         }
 
-
+        //Tester
+        if (Input.GetKey(KeyCode.T))
+        {
+            if (Input.GetKey(KeyCode.R))
+            {
+                if (Input.GetKey(KeyCode.A))
+                {
+                    if (Input.GetKey(KeyCode.P))
+                    {
+                        TrapHave += 100;
+                    }
+                }
+            }
+        }
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
