@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 
@@ -10,6 +11,8 @@ public class PlayerController : MonoBehaviour
      * 
      */
     //
+
+    public GsmeManeger gm;
 
     [SerializeField] private TrapItem TrapDateBase;
     public GameObject Trap;
@@ -35,6 +38,12 @@ public class PlayerController : MonoBehaviour
 
     private SpriteRenderer sliem_sprite;
     public Sprite[] slimes = new Sprite[4];
+
+    public TextMeshProUGUI TrapCounter_text;
+
+
+    //public TextMesh TrapCounter_text;
+    
     //public SpriteRenderer[] slime_heart = new SpriteRenderer[3];
 
     public GameObject[] slime_heart = new GameObject[3];
@@ -109,11 +118,10 @@ public class PlayerController : MonoBehaviour
                     TimerReset();
                     NowMove = true;
                 }
-
-                
             }
         }
-        
+
+
         //SetingTrap
         if (Input.GetKeyDown(KeyCode.Space)&&TrapHave >= 1)
         {
@@ -165,7 +173,10 @@ public class PlayerController : MonoBehaviour
         }
     }
     void PrinteTrap() {
-        TrapCounter.text = TrapHave.ToString();
+        //TrapCounter.text = TrapHave.ToString();
+        ///TrapCounter_text.text = TrapHave.ToString();
+        TrapCounter_text.text = TrapHave.ToString();
+
     }
     void SpriteChange(int number)
     {
@@ -202,6 +213,8 @@ public class PlayerController : MonoBehaviour
             slime_t.Rotate(0,0, 5);
             slime_t.Rotate(0, 0, -4);
             countGoo--;
+            gm.GameSet();
+            
         //}
         
 

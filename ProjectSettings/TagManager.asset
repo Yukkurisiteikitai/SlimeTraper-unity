@@ -6,6 +6,7 @@ TagManager:
   tags:
   - enemy
   - trap
+  - bon
   layers:
   - Default
   - TransparentFX

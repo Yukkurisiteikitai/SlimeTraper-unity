@@ -17,7 +17,7 @@ MonoBehaviour:
     Hp: 10
     Attack: 4
     Defense: 0
-    speed: 34
+    speed: 25
     Exp: 0
     sprite_nomal: {fileID: 21300000, guid: e89602c692ca04af5a2134ae3a5e38d8, type: 3}
     sprite_damage: {fileID: 21300000, guid: cb9330dbec9e0406194bf6a9b466f174, type: 3}
@@ -39,7 +39,7 @@ MonoBehaviour:
     Hp: 2
     Attack: 1
     Defense: 12
-    speed: 300
+    speed: 50
     Exp: 0
     sprite_nomal: {fileID: 21300000, guid: c8ead339611d5424989ebf729989783c, type: 3}
     sprite_damage: {fileID: 21300000, guid: c8ead339611d5424989ebf729989783c, type: 3}
@@ -50,7 +50,7 @@ MonoBehaviour:
     Hp: 15
     Attack: 1
     Defense: 12
-    speed: 30
+    speed: 17
     Exp: 0
     sprite_nomal: {fileID: 21300000, guid: 9167244fff35843df838b3fe8f37252c, type: 3}
     sprite_damage: {fileID: 21300000, guid: 1047bc430f4db40bd99794fca12a6dce, type: 3}
@@ -61,7 +61,7 @@ MonoBehaviour:
     Hp: 4000
     Attack: 232
     Defense: 12
-    speed: 103
+    speed: 32
     Exp: 0
     sprite_nomal: {fileID: 21300000, guid: d751ad344d00f42b3a2eb864319be69a, type: 3}
     sprite_damage: {fileID: 21300000, guid: d751ad344d00f42b3a2eb864319be69a, type: 3}

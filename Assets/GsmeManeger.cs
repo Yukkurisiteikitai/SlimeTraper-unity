@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using TMPro;
 
 [Serializable]public class Total
 {
@@ -39,6 +40,11 @@ public class GsmeManeger : MonoBehaviour
     public Text EnemyText;
     public static int EnemyCount;
 
+    //public TextMesh enemyCounter_text;
+    //public TextMesh trapCounter_text;
+
+    public TextMeshProUGUI enemyCounter_text;
+
     public static int enemyNumber = 0;
     public int GetSetenemyNumber
     {
@@ -65,13 +71,15 @@ public class GsmeManeger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Reset
+        EnemyController.enemyListNumber = 0;
+        EnemyCount = 0;
 
         //stageNumber = MenuManager.menuStageNumber;
         menu.SetActive(false);
 
         for(int y = 4; y >=  -5; y--)
         {
-            
             for(int x = -11; x <= 11; x++)
             {
                 if (x_number > 22)
@@ -82,52 +90,31 @@ public class GsmeManeger : MonoBehaviour
                 //mapNumber = map[y_number, x_number];
                 mapNumber = stagedate.stageList[stageNumber].yValue[y_number].xValue[x_number];
 
-                //Debug.Log("Alldo");
-                //Debug.Log(mapNumber);
                 switch (mapNumber)
                 {
-                    
                     case 1:
                         player.position = new Vector3(x, y, 0);
-                        //Debug.Log("player");
                         break;
-                        /*
-                    case 2:
-                        Instantiate(enemy, new Vector3(x, y, 0), Quaternion.identity);
-                        //Debug.Log("enemy");
-                        EnemyCount++;
-                        break;
-                        */
                     case 3:
                         Instantiate(trap, new Vector3(x, y, 0), Quaternion.identity);
-                        //Debug.Log("trap");
                         break;
                         
                         
                 }
                 mapnumberMix = mapNumber % 100;
-                //Debug.Log("mapnumberMix" +mapnumberMix);
-
+                
                 int mapcheack = mapNumber - mapnumberMix;
-                //Debug.Log("mapcheack" + mapcheack);
                 if(mapcheack == 200)
                 {
-                    //EnemyController.enemyNumber = mapnumberMix;
                     enemyNumber = mapnumberMix;
-                    //Debug.Log("enemyNumberG" + enemyNumber);
-                    //Debug.Log("CheckSmapnumberMix" + mapnumberMix);
                     Instantiate(enemy, new Vector3(x, y, 0), Quaternion.identity);
                     EnemyCount++;
                     enemyList.Add(enemyNumber);//@bag
                 }
-
-                
                 x_number++;
-                
             }
             y_number++;
         }
-
         PrintEnemyCount();
 
     }
@@ -139,7 +126,7 @@ public class GsmeManeger : MonoBehaviour
 
         if(EnemyCount == 0)
         {
-            menu.SetActive(true);
+            GameSet();
         }
         if(EnemyCount < 0)
         {
@@ -161,7 +148,8 @@ public class GsmeManeger : MonoBehaviour
 
     public void PrintEnemyCount()
     {
-        EnemyText.text = EnemyCount.ToString();
+        //EnemyText.text = EnemyCount.ToString();
+        enemyCounter_text.text = EnemyCount.ToString();
     }
 
     public void DestroyEnemy()
@@ -176,5 +164,8 @@ public class GsmeManeger : MonoBehaviour
     {
         total.EnemyKill = EnemyCount;
         //total.SetTrap
+    }public void GameSet() {
+            menu.SetActive(true);
     }
+
 }
