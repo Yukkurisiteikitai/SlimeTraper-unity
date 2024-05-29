@@ -17,7 +17,10 @@ public class CreateManager : MonoBehaviour
     public static bool NowStop = true;
     public static int nowID;
 
-    public GameObject block;
+    public GameObject block_enemy;
+    public GameObject block_terrain;
+    public GameObject block_trap;
+    public Transform block_player;
     /*if=enemy
      * Shife = 0
     Gorst = 1
@@ -68,7 +71,28 @@ public class CreateManager : MonoBehaviour
             this.screenPoint = Camera.main.WorldToScreenPoint(transform.position);
             Vector3 a = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
             //transform.position = Camera.main.ScreenToWorldPoint(a);
-            Instantiate(block, Camera.main.ScreenToWorldPoint(a), Quaternion.identity);
+            switch (kind)
+            {
+                case 0:
+                    Instantiate(block_enemy, Camera.main.ScreenToWorldPoint(a), Quaternion.identity);
+                    break;
+                case 1:
+                    Instantiate(block_trap, Camera.main.ScreenToWorldPoint(a), Quaternion.identity);
+
+                    break;
+                case 2:
+                    block_player.position = Camera.main.ScreenToWorldPoint(a);
+
+                    break;
+                case 3:
+                    Instantiate(block_terrain, Camera.main.ScreenToWorldPoint(a), Quaternion.identity);
+                    break;
+            }
+
+
+
+
+
         }
 
         //
