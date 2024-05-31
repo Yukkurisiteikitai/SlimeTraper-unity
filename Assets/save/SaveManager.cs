@@ -19,7 +19,7 @@ public class Data
 }*/
 public class SaveManager : MonoBehaviour
 {
-    public　static int[,] Map_saveList = new int[10,23]{
+    public int[,] Map_saver = new int[10,23]{
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -29,7 +29,7 @@ public class SaveManager : MonoBehaviour
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     };
     
 
@@ -38,7 +38,7 @@ public class SaveManager : MonoBehaviour
     void Start()
     {
         //Data savedata = new Data();
-        Debug.Log(SaveManager.Map_saveList);
+        Debug.Log(Map_saver);
     }
 
     // Update is called once per frame
@@ -56,14 +56,42 @@ public class SaveManager : MonoBehaviour
         for (int y = 0;y < 10; y++){
             for (int x = 0; x < 23; x++)
             {
-                Debug.Log(y.ToString() + ',' + x.ToString() + '＝' + Map_saveList[y, x].ToString());
+                if(Map_saver[y, x] != 0)
+                {
+                    Debug.Log(y.ToString() + ',' + x.ToString() + '＝' + Map_saver[y, x].ToString());
+
+                }
             }
         }
+    }
+    public void InputTo(int y,int x,int value)
+    {
+        Map_saver[y, x] = value;
+    }
+    public void SaveStart()
+    {
+
+    }
+
+    internal class Map_saveList
+    {
     }
 }
 public class SaveMapping{
     public int saveCode;
-    public int saveX;
-    public int saveY;
+    public float saveX;
+    public float saveY;
+
+    public SaveManager sM;
+
+    
+
+    
+
+    public void Input()
+    {
+        sM.Map_saver[((int)saveY), (int)saveX] = saveCode;
+    }
+
 
 }

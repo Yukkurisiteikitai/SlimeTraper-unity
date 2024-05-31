@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7225799943159326190}
   - component: {fileID: 2450824198054345662}
   - component: {fileID: 5186041947952780867}
+  - component: {fileID: 184047062226836266}
   m_Layer: 6
   m_Name: trap_spia
   m_TagString: trap
@@ -130,3 +131,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.13, y: 0.13}
   m_EdgeRadius: 0
+--- !u!114 &184047062226836266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3568997773976628186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 446622b3fb4394f97b279b9a71a58b2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrapNumber: 0
+  TrapDateBase: {fileID: 11400000, guid: 2227e702646714dc3aa3600a389198a3, type: 2}
+  damage: 0
+  slowly: 0
+  HP: 0
+  setplayer: 0
+  traptype: 0
+  bootting: 0
+  sound: {fileID: 0}
+  destorySound: {fileID: 0}
+  adio: {fileID: 0}
+  sM_trap: {fileID: 0}
