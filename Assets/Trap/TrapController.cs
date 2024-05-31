@@ -7,8 +7,7 @@ using UnityEditor;
 public class TrapController : MonoBehaviour
 {
 
-    public SaveMapping saveMapping = new SaveMapping();
-
+    
 
     private PlayerController player;
     //[SerializeField] public Kind Trapkind;
@@ -29,6 +28,8 @@ public class TrapController : MonoBehaviour
 
     public AudioSource adio;
 
+    //save
+    public SaveMapping saveMapping = new SaveMapping();
     public GameObject sM_trap;
     // Start is called before the first frame update
     void Start()
@@ -40,43 +41,8 @@ public class TrapController : MonoBehaviour
         int changeX = (int)saveMapping.saveX;
         int changeY = (int)saveMapping.saveY;
 
-        //y 4<-5 x-11 <11
-        /*y
-         * 4=0
-         * 3=1
-         * 2=2
-         * 1=3
-         * 0=4
-         * -1=5
-         * -2=6
-         * -3=7
-         * -4=8
-         * -5=9
-         * x
-         * -11 = 0
-         * -10 = 1
-         * -9 = 2
-         * -8 = 3
-         * -7 = 4
-         * -6 = 5
-         * -5 = 6
-         * -4 = 7
-         * -3 = 8
-         * -2 = 9
-         * -1 = 10
-         * 0 = 11
-         * 1 = 12
-         * 2 = 13
-         * 3 = 14
-         * 4 = 15
-         * 5 = 16
-         * 6 = 17
-         * 7 = 18
-         * 8 = 19
-         * 9 = 20
-         * 10 = 21
-         * 11 = 22
-         */
+        // 範囲y 4<-5 x-11 <11
+        
 
 
         // change ren number
@@ -98,6 +64,8 @@ public class TrapController : MonoBehaviour
         }
 
         saveMapping.saveCode = 3;
+
+
 
         /*
         Debug.Log("X" + saveMapping.saveX);
