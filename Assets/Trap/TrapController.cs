@@ -31,60 +31,10 @@ public class TrapController : MonoBehaviour
     //save
     public SaveMapping saveMapping = new SaveMapping();
     public GameObject sM_trap;
+    private bool saveStart = false;
     // Start is called before the first frame update
     void Start()
     {
-        // save Setting
-        saveMapping.saveX = transform.position.x;
-        saveMapping.saveY = transform.position.y;
-
-        int changeX = (int)saveMapping.saveX;
-        int changeY = (int)saveMapping.saveY;
-
-        // 範囲y 4<-5 x-11 <11
-        
-
-
-        // change ren number
-        if(changeX < 0)
-        {
-            changeX = 11 + changeX;
-            
-        }else if(changeX >= 0)
-        {
-            changeX += 11;
-        }
-        //
-        if(changeY < 0)
-        {
-            changeY = (changeY * -1) + 4;
-        }else if (changeY >= 0)
-        {
-            changeY = 4 - changeY;
-        }
-
-        saveMapping.saveCode = 3;
-
-
-
-        /*
-        Debug.Log("X" + saveMapping.saveX);
-        Debug.Log("Y" + saveMapping.saveY);
-        Debug.Log("cX" + changeX);
-        Debug.Log("cY" + changeY);
-        Debug.Log("Cod" + saveMapping.saveCode);
-        */
-        sM_trap = GameObject.Find("SaveManager");
-        saveMapping.sM = sM_trap.GetComponent<SaveManager>();
-        //Debug.Log(saveMapping.sM);
-
-        saveMapping.sM.InputTo(changeY, changeX,saveMapping.saveCode);
-
-
-
-        
-        //save End
-
         // 作動中
         bootting = true;
         //GetComponent<SpriteRenderer>().sprite = TrapDateBase.TrapList[(int)Trapkind].sprite;
@@ -119,7 +69,11 @@ public class TrapController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (saveStart) {
+            Save();
+            saveStart = false;
+        }
+
     }
     
     IEnumerator KillTrap()
@@ -129,6 +83,49 @@ public class TrapController : MonoBehaviour
         //after 4 second Delete addObject
         yield return new WaitForSeconds(4);
         Destroy(gameObject);
+    }
+    // SaveStart
+    public void Save() {
+        // save Setting
+        saveMapping.saveX = transform.position.x;
+        saveMapping.saveY = transform.position.y;
+
+        int changeX = (int)saveMapping.saveX;
+        int changeY = (int)saveMapping.saveY;
+        // 範囲y 4<-5 x-11 <11
+
+        // change ren number
+        if (changeX < 0)
+        {
+            changeX = 11 + changeX;
+
+        }
+        else if (changeX >= 0)
+        {
+            changeX += 11;
+        }
+        //
+        if (changeY < 0)
+        {
+            changeY = (changeY * -1) + 4;
+        }
+        else if (changeY >= 0)
+        {
+            changeY = 4 - changeY;
+        }
+
+        saveMapping.saveCode = 3;
+        /*test
+        Debug.Log("X" + saveMapping.saveX);
+        Debug.Log("Y" + saveMapping.saveY);
+        Debug.Log("cX" + changeX);
+        Debug.Log("cY" + changeY);
+        Debug.Log("Cod" + saveMapping.saveCode);
+        */
+        //save End
+        sM_trap = GameObject.Find("SaveManager");
+        saveMapping.sM = sM_trap.GetComponent<SaveManager>();
+        saveMapping.sM.InputTo(changeY, changeX, saveMapping.saveCode);
     }
 }
 
