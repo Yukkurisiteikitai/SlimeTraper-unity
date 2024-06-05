@@ -75,7 +75,7 @@ public class GsmeManeger : MonoBehaviour
         EnemyController.enemyListNumber = 0;
         EnemyCount = 0;
 
-        stageNumber = MenuManager.menuStageNumber;
+        //stageNumber = MenuManager.menuStageNumber;
 
         menu.SetActive(false);
 

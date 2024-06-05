@@ -77,5 +77,5 @@ MonoBehaviour:
     sprite_nomal: {fileID: 21300000, guid: 9b552f3cf00cc4e4db15f4ecafe20fa2, type: 3}
     sprite_damage: {fileID: 21300000, guid: 9b552f3cf00cc4e4db15f4ecafe20fa2, type: 3}
     sprite_dealete: {fileID: 21300000, guid: 5d99d9e98096a493a8811db135804cf0, type: 3}
-    wakeType: 0
+    wakeType: 3
     strongType: 0

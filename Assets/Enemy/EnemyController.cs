@@ -34,6 +34,9 @@ public class EnemyController : MonoBehaviour
     public float HP = 10;
     public bool life = true;// before private
     public bool go = false;
+    private TYPE type_wake;
+    private TYPE type_strong;
+    
 
     public TYPE traptype;
     
@@ -51,6 +54,8 @@ public class EnemyController : MonoBehaviour
     private PlayerController target_script;
 
     private GsmeManeger gm;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -89,6 +94,9 @@ public class EnemyController : MonoBehaviour
         enemyRender.sprite = enemydate.DataList[eN].sprite_nomal;
         enemys[0] = enemydate.DataList[eN].sprite_nomal;
         enemys[1] = enemydate.DataList[eN].sprite_dealete;
+
+        type_strong = enemydate.DataList[eN].strongType;
+        type_wake = enemydate.DataList[eN].wakeType;
         //enemyNumber = 0;
     }
 
@@ -124,8 +132,13 @@ public class EnemyController : MonoBehaviour
         if(collision.tag == "trap")
         {
             // Damege Processing
-            HP -= collision.GetComponent<TrapController>().damage;
-            traptype = collision.GetComponent<TrapController>().traptype;
+
+            //HP -= collision.GetComponent<TrapController>().damage;
+            TrapController tc = collision.GetComponent<TrapController>();
+            traptype = tc.traptype;
+
+            HP -= damageCheack(traptype, tc.damage);
+            /*
             if(traptype == waketype)
             {
                 HP -= collision.GetComponent<TrapController>().damage * 4;
@@ -133,7 +146,7 @@ public class EnemyController : MonoBehaviour
             {
                 HP -= collision.GetComponent<TrapController>().damage;
             }
-
+            */
             
         }
         enemyRender.enabled = true;
@@ -159,7 +172,22 @@ public class EnemyController : MonoBehaviour
     {
         return Random.Range(mix, max);
     }
-    
+
+    //damege cheack
+
+    float damageCheack(TYPE damage_type,float damage_base)
+    {
+        // 
+        float damage = damage_base;
+        if(type_wake == damage_type) {
+            damage *= 2;
+        }
+        if(type_strong == damage_type)
+        {
+            damage /= 2;
+        }
+        return damage;
+    }
     /*
     public void MoveEnemy()
     {

@@ -218,8 +218,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Select Stage
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 84c9b2479390048e5a9bdd38e49a0d8c, type: 2}
-  m_sharedMaterial: {fileID: 4193515016768631905, guid: 84c9b2479390048e5a9bdd38e49a0d8c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d97fd4ad1a9f04dd0884fa189d98d37a, type: 2}
+  m_sharedMaterial: {fileID: 5810168725611570337, guid: d97fd4ad1a9f04dd0884fa189d98d37a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
