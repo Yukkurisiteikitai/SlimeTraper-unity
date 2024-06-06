@@ -55,7 +55,7 @@ public class EnemyController : MonoBehaviour
 
     private GsmeManeger gm;
 
-    
+    public int eN_publicer;
 
     // Start is called before the first frame update
     void Start()
@@ -71,6 +71,7 @@ public class EnemyController : MonoBehaviour
         enemyId = enemyNumber.ToString() + "nick" + rmd(0.0000001f,1.000000f);
 
 
+
         target = GameObject.Find("slimeBase");
         //target_t = target.GetComponent<Transform>();
         enemy_t = GetComponent<Transform>();
@@ -83,6 +84,7 @@ public class EnemyController : MonoBehaviour
         //enemyNumber = gm.enemyNumber;
         Debug.Log(gm);
         int eN = enemyNumber;//GsmeManeger.enemyNumber;
+        eN_publicer = eN;
         Debug.Log("eN" +eN);
 
 
