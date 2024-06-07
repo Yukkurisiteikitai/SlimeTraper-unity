@@ -9,6 +9,7 @@ public class DictinaryManager : MonoBehaviour
     //Object
     public Image panelColor;
 
+    public TextMeshProUGUI information_text;
     public TextMeshProUGUI name_text;
     public TextMeshProUGUI hp_text;
     public TextMeshProUGUI speed_text;
@@ -18,13 +19,18 @@ public class DictinaryManager : MonoBehaviour
     [SerializeField] EnemyItem enemyDataBase;
     [SerializeField] TrapItem trapDataBase;
 
+
+    public Sprite[] effect_sprite;
+    public Sprite[] type_sprite;
     //ALL
     private string Id;
     private float Hp;
-    private int Attack;
-    
+    private float Attack;
+
+
 
     //Enemy
+    private int trapNumber;
     private int Defense;
     private float speed;
     private TYPE wake;
@@ -32,11 +38,12 @@ public class DictinaryManager : MonoBehaviour
 
     //Trap
     private effect effect;
-
+    private TYPE trapType;
 
     public GameObject test;
 
     private EnemyController eC;
+    private TrapController tC;
 
     // Start is called before the first frame update
     void Start()
@@ -52,8 +59,31 @@ public class DictinaryManager : MonoBehaviour
         }
 
     }
+    void TrapPrint(GameObject trap)
+    {
+        information_text.text = "HP\nattack\ntype\neffect";
+
+        tC = trap.GetComponent<TrapController>();
+        trapNumber = tC.TrapNumber;
+        Hp = tC.HP;
+        Attack = trapDataBase.TrapList[trapNumber].damage;
+        trapType = tC.traptype;
+
+        panelColor.color = new Color32(127, 18, 255, 210);
+        name_text.text = trapDataBase.TrapList[trapNumber].Trap_name;
+        hp_text.text = Hp.ToString();
+
+         
+
+         
+    }
+
+
     void EnemyPrint(GameObject enemy) {
+        information_text.text = "HP\nspeed\ndifence\nwakeType\nstrongType ";
+
         int enemyNumber = 0;
+
 
         eC = enemy.GetComponent<EnemyController>();
         enemyNumber = eC.eN_publicer;
@@ -94,6 +124,11 @@ public class DictinaryManager : MonoBehaviour
             level = 1;
         }
         int a = (int)level;
+        return a;
+    }
+    string ToStr(int joi)
+    {
+        string a = joi.ToString();
         return a;
     }
 
