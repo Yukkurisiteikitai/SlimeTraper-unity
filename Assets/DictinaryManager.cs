@@ -57,6 +57,10 @@ public class DictinaryManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) {
             EnemyPrint(test);
         }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            TrapPrint(test);
+        }
 
     }
     void TrapPrint(GameObject trap)
@@ -91,8 +95,8 @@ public class DictinaryManager : MonoBehaviour
         Hp = eC.HP;
         speed = enemyDataBase.DataList[enemyNumber].speed;
         Defense = enemyDataBase.DataList[enemyNumber].Defense;
-        wake = enemyDataBase.DataList[enemyNumber].wakeType;
-        strong = enemyDataBase.DataList[enemyNumber].strongType;
+        //wake = enemyDataBase.DataList[enemyNumber].wakeType;
+        //strong = enemyDataBase.DataList[enemyNumber].strongType;
 
         panelColor.color = new Color32(224, 54, 59, 210);
 

@@ -13,8 +13,8 @@ using UnityEngine;
     public Sprite sprite_damage;
     public Sprite sprite_dealete;
 
-    public TYPE wakeType;
-    public TYPE strongType;
+    //public TYPE wakeType;
+    public TYPE type;
 }
 [CreateAssetMenu(fileName = "EnemyDate", menuName = "GameDate/EnemyDateBase")]
 public class EnemyItem : ScriptableObject

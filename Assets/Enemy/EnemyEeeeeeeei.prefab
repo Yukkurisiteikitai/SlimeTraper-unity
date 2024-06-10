@@ -137,14 +137,21 @@ MonoBehaviour:
   spia: {fileID: 11400000, guid: 2227e702646714dc3aa3600a389198a3, type: 2}
   damaga_e: 0
   enemydate: {fileID: 11400000, guid: da1a8272f3eef4df3b0cc784966c6ccf, type: 2}
+  typeData: {fileID: 11400000, guid: a86035e5b1cb949908ea91569a1eb06b, type: 2}
+  enemyNumber: 0
   target: {fileID: 0}
   target_t: {fileID: 7677881764840549010, guid: c620cf90ac8fa448fa37703383cabbcd, type: 3}
   speed: 2.7
   HP: 10
+  life: 1
+  go: 0
+  traptype: 0
+  enemyId: 
   enemyRender: {fileID: 4770041007264756541}
   enemys:
   - {fileID: 21300000, guid: 5759f2ce60dbe4014a661a84f0004e2c, type: 3}
   - {fileID: 21300000, guid: cb9330dbec9e0406194bf6a9b466f174, type: 3}
+  eN_publicer: 0
 --- !u!50 &7920652979516855957
 Rigidbody2D:
   serializedVersion: 4

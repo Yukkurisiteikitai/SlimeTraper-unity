@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private TrapItem spia;
     public float damaga_e;
     [SerializeField] private EnemyItem enemydate;
+    [SerializeField] private TypeItem typeData;
 
     //public List<int> enemyList;
 
@@ -15,7 +16,7 @@ public class EnemyController : MonoBehaviour
     public static int enemyListNumber = 0;
     private int enemyAll = GsmeManeger.EnemyCount;
     private TYPE waketype;
-    private TYPE strongtype;
+    private TYPE myType;
     
 
 
@@ -35,7 +36,7 @@ public class EnemyController : MonoBehaviour
     public bool life = true;// before private
     public bool go = false;
     private TYPE type_wake;
-    private TYPE type_strong;
+    //private TYPE type_strong;
     
 
     public TYPE traptype;
@@ -88,17 +89,36 @@ public class EnemyController : MonoBehaviour
         Debug.Log("eN" +eN);
 
 
-        waketype = enemydate.DataList[eN].wakeType;
-        strongtype = enemydate.DataList[eN].strongType;
+        //waketype = enemydate.DataList[eN].wakeType;
+        //strongtype = enemydate.DataList[eN].strongType;
+        
+
         HP = enemydate.DataList[eN].Hp;
         speed = enemydate.DataList[eN].speed;
         Debug.Log("enemyNumber" + eN);
         enemyRender.sprite = enemydate.DataList[eN].sprite_nomal;
         enemys[0] = enemydate.DataList[eN].sprite_nomal;
         enemys[1] = enemydate.DataList[eN].sprite_dealete;
+        myType = enemydate.DataList[eN].type;
+        
+        //type_strong = enemydate.DataList[eN].strongType;
 
-        type_strong = enemydate.DataList[eN].strongType;
-        type_wake = enemydate.DataList[eN].wakeType;
+        //type_wake = enemydate.DataList[eN].wakeType;@todo.
+
+        
+        for(int i = 0; i < 5; i++)
+        {
+            if(typeData.TypeList[i].myType == myType)
+            {
+                type_wake = typeData.TypeList[i].wakeType[0];
+            }
+        }
+        Debug.Log(myType);
+        Debug.Log(type_wake);
+
+
+
+
         //enemyNumber = 0;
     }
 
@@ -184,10 +204,12 @@ public class EnemyController : MonoBehaviour
         if(type_wake == damage_type) {
             damage *= 2;
         }
+        /*
         if(type_strong == damage_type)
         {
             damage /= 2;
         }
+        */
         return damage;
     }
     /*
