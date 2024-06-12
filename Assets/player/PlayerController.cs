@@ -42,6 +42,9 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI TrapCounter_text;
 
 
+    
+    private Animator slime_animator;
+
     //public TextMesh TrapCounter_text;
     
     //public SpriteRenderer[] slime_heart = new SpriteRenderer[3];
@@ -50,6 +53,8 @@ public class PlayerController : MonoBehaviour
     //0= slime_stop,1=slime_move,2=slime_back,3=slime_death
     void Start()
     {
+        slime_animator = GetComponent<Animator>();
+
         PrinteTrap();
         TrapImageChange(TrapNumber);
         sliem_sprite = GetComponent<SpriteRenderer>();
@@ -74,6 +79,8 @@ public class PlayerController : MonoBehaviour
 
         if(life == true)
         {
+            //slime_animator.SetBool("jump", false);
+
             if (Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.UpArrow))//up @bag
             {
                 if(slime_t.position.y < 4)
@@ -117,6 +124,7 @@ public class PlayerController : MonoBehaviour
                     transform.localScale = new Vector3(7.668242f, 7.668242f, 1);
                     TimerReset();
                     NowMove = true;
+                    
                 }
             }
         }
@@ -130,6 +138,8 @@ public class PlayerController : MonoBehaviour
             Instantiate(Trap,I_t,Quaternion.identity);
             TrapHave--;
             PrinteTrap();
+            //slime_animator.SetBool("jump", true);
+            StartCoroutine("Jump");
         }
         //TrapSetChange
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -219,6 +229,15 @@ public class PlayerController : MonoBehaviour
         
 
     }
+    IEnumerator Jump()
+    {
+        slime_animator.SetBool("jump", true);
+        yield return new WaitForSeconds(0.9f);
+        slime_animator.SetBool("jump", false);
+    }
+    //slime_animator.SetBool("jump", true);
+
+
 
 
 }
