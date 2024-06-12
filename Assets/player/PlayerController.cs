@@ -86,7 +86,9 @@ public class PlayerController : MonoBehaviour
                 if(slime_t.position.y < 4)
                 {
                     transform.Translate(0, speed, 0);
-                    SpriteChange(2);
+                    //SpriteChange(2);
+                    slime_animator.SetInteger("state", 1);
+
 
                     TimerReset();
                     NowMove = true;
@@ -98,7 +100,8 @@ public class PlayerController : MonoBehaviour
                 if(slime_t.position.y > -5)
                 {
                     transform.Translate(0, -speed, 0);
-                    SpriteChange(1);
+                    //SpriteChange(1);
+                    slime_animator.SetInteger("state", 2);
 
                     TimerReset();
                     NowMove = true;
@@ -110,7 +113,9 @@ public class PlayerController : MonoBehaviour
                 if(slime_t.position.x < 11)
                 {
                     transform.Translate(speed, 0, 0);
-                    SpriteChange(1);
+                    //SpriteChange(1);
+                    slime_animator.SetInteger("state", 0);
+
                     transform.localScale = new Vector3(-7.668242f, 7.668242f, 1);
                     TimerReset();
                     NowMove = true;
@@ -120,7 +125,10 @@ public class PlayerController : MonoBehaviour
             {
                 if(slime_t.position.x > -11) {
                     transform.Translate(-speed, 0, 0);
-                    SpriteChange(1);
+                    //SpriteChange(1);
+                    slime_animator.SetInteger("state", 0);
+
+
                     transform.localScale = new Vector3(7.668242f, 7.668242f, 1);
                     TimerReset();
                     NowMove = true;
