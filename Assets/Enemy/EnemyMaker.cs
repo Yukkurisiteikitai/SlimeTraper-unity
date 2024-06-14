@@ -26,9 +26,23 @@ public class EnemyMaker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.U))
+        {
+            Set();
+        }
         
-        
-    }float Randomreturn(float mix,float max)
+    }void Set()
+    {
+        for (int i = 0; i < value; i++)
+        {
+            pos = new Vector3(Randomreturn(-8, 8), Randomreturn(-4, 4), 0);
+
+            Instantiate(Enemy, pos, Quaternion.identity);
+
+        }
+    }
+
+    float Randomreturn(float mix,float max)
     {
         return Random.Range(mix, max);
     }
