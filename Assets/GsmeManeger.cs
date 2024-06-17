@@ -68,6 +68,9 @@ public class GsmeManeger : MonoBehaviour
     int mapNumber = 0;
     int y_number = 0;
     int x_number = 0;
+
+    public SpriteRenderer background;
+    [SerializeField] GameDate gamestageDateBase;
     // Start is called before the first frame update
     void Start()
     {
@@ -75,7 +78,9 @@ public class GsmeManeger : MonoBehaviour
         EnemyController.enemyListNumber = 0;
         EnemyCount = 0;
 
-        //stageNumber = MenuManager.menuStageNumber;
+        stageNumber = MenuManager.menuStageNumber;
+        background.sprite = gamestageDateBase.stagelist[stageNumber].background;
+
 
         menu.SetActive(false);
 

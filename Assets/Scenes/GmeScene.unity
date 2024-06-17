@@ -2989,7 +2989,7 @@ GameObject:
   - component: {fileID: 1328473545}
   - component: {fileID: 1328473544}
   m_Layer: 7
-  m_Name: ForestBackGround
+  m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3401,6 +3401,8 @@ MonoBehaviour:
   stageNumber: 2
   EnemyText: {fileID: 257109668}
   enemyCounter_text: {fileID: 30787488}
+  background: {fileID: 1328473544}
+  gamestageDateBase: {fileID: 11400000, guid: 33442f68b182445eb937a788d81f153c, type: 2}
 --- !u!4 &1473436873
 Transform:
   m_ObjectHideFlags: 0
