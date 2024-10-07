@@ -17,8 +17,6 @@ public class EnemyController : MonoBehaviour
     private int enemyAll = GsmeManeger.EnemyCount;
     private TYPE waketype;
     private TYPE myType;
-    
-
 
     public enum JANKEN_TYPE
     {
@@ -41,8 +39,6 @@ public class EnemyController : MonoBehaviour
 
     public TYPE traptype;
     
-    
-
 
     public string enemyId;
 
@@ -58,11 +54,17 @@ public class EnemyController : MonoBehaviour
 
     public int eN_publicer;
 
+    Rigidbody2D rb;
+
+    
+    // hosei.
+    Vector3 ResetPos = new Vector3();
+
     // Start is called before the first frame update
     void Start()
     {
-        
 
+        rb = GetComponent<Rigidbody2D>();
 
         gm = GameObject.Find("GameManger").GetComponent<GsmeManeger>();
         if(enemyListNumber < enemyAll) {
@@ -98,7 +100,8 @@ public class EnemyController : MonoBehaviour
         Debug.Log("enemyNumber" + eN);
         enemyRender.sprite = enemydate.DataList[eN].sprite_nomal;
         enemys[0] = enemydate.DataList[eN].sprite_nomal;
-        enemys[1] = enemydate.DataList[eN].sprite_dealete;
+        enemys[1] = enemydate.DataList[eN].sprite_damage;
+        enemys[2] = enemydate.DataList[eN].sprite_dealete;
         myType = enemydate.DataList[eN].type;
         
         //type_strong = enemydate.DataList[eN].strongType;
@@ -117,22 +120,44 @@ public class EnemyController : MonoBehaviour
         Debug.Log(type_wake);
 
 
-
-
         //enemyNumber = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        go = target_script.NowMove;
         
-        if (life == true&&go==true) {
-            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-            
-            //MoveEnemy();
+        go = target_script.NowMove;
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            MoveNavEnemy();
         }
+
+
+        if (life == true&&go==true) {
+            //Move 
+            rb.AddForce(AddForcePower(target.transform.position, this.transform.position));
+
+
+
+            //transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+            //rb.AddForce(Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime) * -1);// balling
+            //rb.MovePosition(target.transform.position * Time.deltaTime);
+            //MoveEnemy();
+            //StartCoroutine("Move");
+        }
+
         timer += Time.deltaTime;
+
+        if (timer > 2.5f && life == true) {
+            //rb.velocity = Vector3.zero;
+            enemyRender.sprite = enemys[0];
+
+            timer = 0;
+        }
+
+
         if(HP <= 3)
         {
             StartCoroutine("FlashNoooooo");
@@ -142,61 +167,179 @@ public class EnemyController : MonoBehaviour
             //Debug.LogError("Death");
             life = false;
             GsmeManeger.EnemyCount--;
-            GetComponent<SpriteRenderer>().sprite = enemys[1];
+            GetComponent<SpriteRenderer>().sprite = enemys[2];
             StartCoroutine("Dealete");
+        }
+        else
+        {
+            //rb.velocity = Vector3.zero;
         }
 
 
+
+        //OverSpace.
+        /*
+        if(transform.position.y > 8.5f|| transform.position.y < -7.6f|| transform.position.x < -17.5f|| transform.position.x > 17.5f)
+        {
+            RePlase();
+        }*/
+
+        //===================================================TEST-CODE===================================================.
+        if (Input.GetKey(KeyCode.T))
+        {
+            //RightBody velecity zero
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                rb.velocity = Vector3.zero;
+            }
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                RePlase();
+            }
+        }
+        //==============================================~END-TEST-CODE===================================================.
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
         if(collision.tag == "trap")
         {
-            // Damege Processing
+            // Damege Processing.
 
             //HP -= collision.GetComponent<TrapController>().damage;
             TrapController tc = collision.GetComponent<TrapController>();
             traptype = tc.traptype;
-
-            HP -= damageCheack(traptype, tc.damage);
-            /*
-            if(traptype == waketype)
-            {
-                HP -= collision.GetComponent<TrapController>().damage * 4;
-            }else
-            {
-                HP -= collision.GetComponent<TrapController>().damage;
-            }
-            */
-            
+            float damage = damageCheack(traptype, tc.damage);
+            HP -= damage;
+            GsmeManeger.TakenDamage += damage;
+            rb.velocity *= 0.75f;
+            enemyRender.sprite = enemys[1];
         }
         enemyRender.enabled = true;
         
         if(collision.tag == "bon") {
             HP -= HP*0.75f;
         }
+        if (collision.tag == "enemy")
+        {
+            // hurue.
+            float power = 2.2f;
 
+
+            int a = Random.Range(0, 3);
+            Vector3 g = new Vector3(0, 0, 0);
+            int g_x = 0;
+            int g_y = 0;
+            //randomGo
+            
+            switch (a)
+            {
+                case 0://up.
+                    g = new Vector3(0, 1, 0);
+                    g_y = 1;
+                    break;
+                case 1://down.
+                    g = new Vector3(0, -1, 0);
+                    g_y = -1;
+                    break;
+                case 2://left.
+                    g = new Vector3(-1, 0, 0);
+                    g_x = -1;
+                    break;
+                case 3://right.
+                    g = new Vector3(1, 0, 0);
+                    g.x = 1;
+                    break;
+            }
+
+            //g = new Vector3(g.x *power,g.y * power, power);
+            g = new Vector3(g_x * power, g_y* power, power);
+            //Debug.Log(g);
+
+            rb.AddForce(g);
+            //Debug.Log(rb.velocity);
+
+
+        }
+
+        //[Block] remove from sight.
+        if (collision.tag == "wall")
+        {
+            rb.velocity = Vector3.zero;
+            if (transform.position.y > 8.5f || transform.position.y < -7.6f || transform.position.x < -17.5f || transform.position.x > 17.5f)
+            {
+                RePlase();
+            }
+        }
+        else
+        {
+            rb.velocity = Vector3.zero;
+        }
     }
+    void OnTriggerStay2D(Collider2D other)
+    {
+        //rb.velocity = Vector3.zero;
+    }
+    //移動する方向をを取得する.
+    Vector3 AddForcePower(Vector3 target_pos, Vector3 center_pos)
+    {
+        Vector3 temp_pos = target_pos - center_pos;
+
+        //Change.
+        if(temp_pos.x < 0)
+        {
+            temp_pos.x = -1;
+        }else if(temp_pos.x > 0)
+        {
+            temp_pos.x = 1;
+        }
+        if (temp_pos.y < 0)
+        {
+            temp_pos.y = -1;
+        }
+        else if (temp_pos.y > 0)
+        {
+            temp_pos.y = 1;
+        }
+        temp_pos*= speed;
+
+        return temp_pos;
+    }
+
+
+    // 体力減少時の点滅処理.
     IEnumerator FlashNoooooo()
     {
         enemyRender.enabled = false;
         yield return new WaitForSeconds(3);
         enemyRender.enabled = true;
-    }IEnumerator Dealete()
+    }
+    //倒された際の処理.
+    IEnumerator Dealete()
     {
-        
-        //after 4 second Delete addObject
+        //after 4 second Delete addObject.
         yield return new WaitForSeconds(4);
         //GsmeManeger.EnemyCount--;
+        GsmeManeger.DownEnemy++;
         Destroy(gameObject);
-    }float rmd(float mix,float max)
+    }
+    IEnumerator Move()
+    {
+        rb.AddForce(AddForcePower(target.transform.position, this.transform.position));
+
+        //after 4 second Delete addObject.
+        yield return new WaitForSeconds(2);
+        //GsmeManeger.EnemyCount--;
+        rb.velocity = Vector3.zero;
+    }
+
+    //Random Easy Do Method.
+    float rmd(float mix,float max)
     {
         return Random.Range(mix, max);
     }
 
-    //damege cheack
-
+    //damege cheack.
     float damageCheack(TYPE damage_type,float damage_base)
     {
         // 
@@ -212,7 +355,7 @@ public class EnemyController : MonoBehaviour
         */
         return damage;
     }
-    /*
+    /*過去失敗したやつ.
     public void MoveEnemy()
     {
         target_t = target.GetComponent<Transform>();
@@ -235,5 +378,68 @@ public class EnemyController : MonoBehaviour
         }
     }
     */
-    
+    private void MoveNavEnemy()
+    {
+        //NavMesh TO MOVE
+        
+        int[,] DIRECTION = // 方向.
+        {
+            {0,1 },//UP.
+            {1,0 },//Right.
+            {0,-1 },//Down.
+            {-1,0 }//left.
+        };
+
+        string[] Dr = {"UP","Right","Down","left"};
+
+
+        for(int i = 0; i < DIRECTION.GetLength(0); i++)
+        {
+            Vector2 a = this.transform.position;
+
+
+            //Vector2 test = a + new Vector2(DIRECTION[i, 0], DIRECTION[i, 1]);
+            Vector2 test = Vector2Pluse(a, new Vector2(DIRECTION[i, 0], DIRECTION[i, 1]));
+
+            Debug.Log(Dr[i]);
+            Debug.Log(test); 
+        }
+    }
+
+    Vector2 Vector2Pluse(Vector2 v_one,Vector2 v_two)
+    {
+        Vector2 answer = new Vector2();
+        answer = new Vector2(v_one.x + v_two.x, v_one.y + v_two.y);
+        return answer;
+    }
+
+
+    // hosei
+
+    void RePlase()
+    {
+        
+        if (transform.position.x < -17.5f)//leftOver.
+        {
+            ResetPos.x = -10.3f;
+
+        }
+        if (transform.position.x > 17.5f)//RightOver.
+        {
+            ResetPos.x = 10.3f;
+        }
+        if (transform.position.y < -7.6f)//DownOver.
+        {
+            ResetPos.y = -5;
+        }
+        if (transform.position.y > 8.5f)//UpOver.
+        {
+            ResetPos.y = 4;
+
+        }
+        transform.position = ResetPos;
+
+    }
+
+
 }

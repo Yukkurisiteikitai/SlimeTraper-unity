@@ -101,39 +101,28 @@ public class SaveManager : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.M)) {
-            
-
-
-
             for (int y = 0; y < 10; y++)
             {
                 for (int x = 0; x < 23; x++)
                 {
-
                     /*
                     if (Map_saver[y, x] != 0)
                     {
                         Debug.Log(y.ToString() + ',' + x.ToString() + '＝' + Map_saver[y, x].ToString());
                         sd.yValue[y].xValue[x] = Map_saver[y, x];//save
-                    }*/
-
-                    
+                    }*/   
                     x_p = x - 11;
                     y_p = 4 - y_p;
                     
                     a = Map_saver[y, x];
-                    
                     if (a == 3)
                     {
                         Instantiate(test,new Vector3(x_p,y_p,0),Quaternion.identity);
-
                     }
                 }
             }
         }
-
     }
-
     //Map_save value print
     void CheackMapSave()
     {
@@ -147,7 +136,6 @@ public class SaveManager : MonoBehaviour
                 }
             }
         }
-
     }
     //
     public void InputTo(int y,int x,int value)
@@ -193,9 +181,7 @@ public class SaveManager : MonoBehaviour
 
         try
         {
-            
             return JsonUtility.FromJson<SavingData>(datastr);
-
         }
         catch (ArgumentException e)
         {
@@ -225,17 +211,10 @@ public class SaveMapping{
     public int saveCode;
     public float saveX;
     public float saveY;
-
     public SaveManager sM;
-
-    
-
-    
 
     public void Input()
     {
         sM.Map_saver[((int)saveY), (int)saveX] = saveCode;
     }
-
-
 }

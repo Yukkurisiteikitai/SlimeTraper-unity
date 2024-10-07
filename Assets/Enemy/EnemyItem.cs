@@ -15,9 +15,15 @@ using UnityEngine;
 
     //public TYPE wakeType;
     public TYPE type;
+    public Military_type military_type;
 }
 [CreateAssetMenu(fileName = "EnemyDate", menuName = "GameDate/EnemyDateBase")]
 public class EnemyItem : ScriptableObject
 {
     public List<EnemyData> DataList;
+}
+
+public enum Military_type
+{
+    infantry, Thrower,
 }

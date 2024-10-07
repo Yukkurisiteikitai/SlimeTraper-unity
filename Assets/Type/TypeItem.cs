@@ -28,6 +28,8 @@ public class TypeItem : ScriptableObject
 {
     public List<TypeBase> TypeList;
 }
+
+
 /*
 public enum TYPE
 {

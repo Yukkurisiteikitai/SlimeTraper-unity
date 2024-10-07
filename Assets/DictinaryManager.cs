@@ -54,12 +54,28 @@ public class DictinaryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            EnemyPrint(test);
-        }
-        if (Input.GetKeyDown(KeyCode.Y))
+        if(test == null)
         {
-            TrapPrint(test);
+            test = null;
+        }
+        //get Target Infomation.
+        if (Input.GetMouseButtonDown(0))
+        {
+            test = GetMouseOnObject();
+            if(test != null)
+            {
+                if (test.tag == "trap")
+                {
+                    TrapPrint(test);
+
+                }
+                else if (test.tag == "enemy")
+                {
+                    EnemyPrint(test);
+
+                }
+            }
+            
         }
 
     }
@@ -76,18 +92,12 @@ public class DictinaryManager : MonoBehaviour
         panelColor.color = new Color32(127, 18, 255, 210);
         name_text.text = trapDataBase.TrapList[trapNumber].Trap_name;
         hp_text.text = Hp.ToString();
-
-         
-
-         
     }
-
 
     void EnemyPrint(GameObject enemy) {
         information_text.text = "HP\nspeed\ndifence\nwakeType\nstrongType ";
 
         int enemyNumber = 0;
-
 
         eC = enemy.GetComponent<EnemyController>();
         enemyNumber = eC.eN_publicer;
@@ -121,8 +131,7 @@ public class DictinaryManager : MonoBehaviour
     }
     int levelChange(float level)
     {
-        level = level - (level % 20);
-        level /= 20;
+        level = (level / 20) - (level % 20);
         if(level < 1)
         {
             level = 1;
@@ -134,6 +143,22 @@ public class DictinaryManager : MonoBehaviour
     {
         string a = joi.ToString();
         return a;
+    }
+
+    public static GameObject GetMouseOnObject()
+    {
+        RaycastHit2D hit =
+        Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+        if (hit.collider != null)
+        {
+            return hit.collider.gameObject;
+        }
+        else
+        {
+            return null;
+        }
+
     }
 
 }

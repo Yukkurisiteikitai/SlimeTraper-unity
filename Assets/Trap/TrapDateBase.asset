@@ -31,6 +31,24 @@ MonoBehaviour:
     type: 3
     effect: 1
     HP: 100
+  - Trap_name: Fire
+    damage: 450
+    Attacksound: {fileID: 8300000, guid: 7c5674ce7caf14f4ab078dcc85c123b2, type: 3}
+    slowly: 0.6
+    sprite: {fileID: 21300000, guid: 9b245b2af702e459ca7fa8ccb6a73352, type: 3}
+    sprite_breack: {fileID: 21300000, guid: 113ca6a167161491ea391d3bc2c5a791, type: 3}
+    type: 0
+    effect: 0
+    HP: 5
+  - Trap_name: Wing
+    damage: 359
+    Attacksound: {fileID: 8300000, guid: 7c5674ce7caf14f4ab078dcc85c123b2, type: 3}
+    slowly: 0.6
+    sprite: {fileID: 21300000, guid: c9979cee7fb9e47a59069ff7453a6625, type: 3}
+    sprite_breack: {fileID: 21300000, guid: 06971f6d13aee456aa6ca42e1f5750f0, type: 3}
+    type: 2
+    effect: 3
+    HP: 1
   - Trap_name: Bag
     damage: 99999999
     Attacksound: {fileID: 8300000, guid: 7c5674ce7caf14f4ab078dcc85c123b2, type: 3}

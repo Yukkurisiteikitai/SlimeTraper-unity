@@ -151,6 +151,7 @@ MonoBehaviour:
   enemys:
   - {fileID: 21300000, guid: 5759f2ce60dbe4014a661a84f0004e2c, type: 3}
   - {fileID: 21300000, guid: cb9330dbec9e0406194bf6a9b466f174, type: 3}
+  - {fileID: 21300000, guid: cb9330dbec9e0406194bf6a9b466f174, type: 3}
   eN_publicer: 0
 --- !u!50 &7920652979516855957
 Rigidbody2D:

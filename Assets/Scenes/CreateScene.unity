@@ -2137,9 +2137,9 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996122152}
   m_Enabled: 1
-  m_CellSize: {x: 1, y: 0.5, z: 1}
+  m_CellSize: {x: 1, y: 1, z: 1}
   m_CellGap: {x: 0, y: 0, z: 0}
-  m_CellLayout: 2
+  m_CellLayout: 0
   m_CellSwizzle: 0
 --- !u!4 &996122154
 Transform:
@@ -3775,6 +3775,8 @@ MonoBehaviour:
   stageNumber: 3
   EnemyText: {fileID: 0}
   enemyCounter_text: {fileID: 0}
+  background: {fileID: 0}
+  gamestageDateBase: {fileID: 0}
 --- !u!4 &1473436873
 Transform:
   m_ObjectHideFlags: 0

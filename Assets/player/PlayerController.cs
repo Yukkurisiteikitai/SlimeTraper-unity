@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
     
     private Animator slime_animator;
 
+    private float takeInterval_Trap = 45;
+    private float takeTrapTimer = 0;
     //public TextMesh TrapCounter_text;
     
     //public SpriteRenderer[] slime_heart = new SpriteRenderer[3];
@@ -67,9 +69,17 @@ public class PlayerController : MonoBehaviour
     {
         //WaitMotion.
         timer += Time.deltaTime;
-        if(timer >= interval) {
-            timer = 0;
+        takeTrapTimer += Time.deltaTime;
+
+        if (timer == timer % interval) {
+            
             SpriteChange(0);
+        }
+        if(takeTrapTimer >= takeInterval_Trap)
+        {
+            takeTrapTimer = 0;
+            TrapHave++;
+            PrinteTrap();
         }
 
 
@@ -77,10 +87,13 @@ public class PlayerController : MonoBehaviour
         //Move （領域制限版）.
         //if(入力ボタン&&〇〇から出ないで).
 
-        if(life == true)
+        if(life == true&& Input.anyKeyDown)
         {
             //slime_animator.SetBool("jump", false);
-
+            if (Input.anyKeyDown)
+            {
+                Debug.Log("aa");
+            }
             if (Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.UpArrow))//up @bag
             {
                 if(slime_t.position.y < 4)
@@ -92,8 +105,7 @@ public class PlayerController : MonoBehaviour
 
                     TimerReset();
                     NowMove = true;
-                }
-                
+                }  
             }
             if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))//down @bag
             {
@@ -106,7 +118,6 @@ public class PlayerController : MonoBehaviour
                     TimerReset();
                     NowMove = true;
                 }
-                
             }
             if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))//right @bag
             {
@@ -132,7 +143,6 @@ public class PlayerController : MonoBehaviour
                     transform.localScale = new Vector3(7.668242f, 7.668242f, 1);
                     TimerReset();
                     NowMove = true;
-                    
                 }
             }
         }
@@ -148,13 +158,14 @@ public class PlayerController : MonoBehaviour
             PrinteTrap();
             //slime_animator.SetBool("jump", true);
             StartCoroutine("Jump");
+            GsmeManeger.UsedTrap++;
         }
         //TrapSetChange
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             //TrapChange
             TrapNumber++;
-            if(TrapNumber > 2)//TrapNumberMax
+            if(TrapNumber > 3)//TrapNumberMax
             {
                 TrapNumber = 0;
             }
@@ -194,7 +205,6 @@ public class PlayerController : MonoBehaviour
         //TrapCounter.text = TrapHave.ToString();
         ///TrapCounter_text.text = TrapHave.ToString();
         TrapCounter_text.text = TrapHave.ToString();
-
     }
     void SpriteChange(int number)
     {
@@ -231,11 +241,9 @@ public class PlayerController : MonoBehaviour
             slime_t.Rotate(0,0, 5);
             slime_t.Rotate(0, 0, -4);
             countGoo--;
-            gm.GameSet();
+            gm.GameSet("over");
             
         //}
-        
-
     }
     IEnumerator Jump()
     {
@@ -244,8 +252,4 @@ public class PlayerController : MonoBehaviour
         slime_animator.SetBool("jump", false);
     }
     //slime_animator.SetBool("jump", true);
-
-
-
-
 }

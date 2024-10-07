@@ -33,6 +33,8 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
         if(startCircle.localScale.x < 21.97f&&go == true)
         {
             startCircle.localScale += new Vector3(speed * Time.deltaTime, speed * Time.deltaTime, 0);

@@ -6,23 +6,36 @@ using UnityEngine.UI;
 public class CreateManager : MonoBehaviour
 {
     
-
+    //Sound
     public AudioClip Buttonsound;
     public AudioClip saveSound;
     public AudioSource adio;
 
+    
     Vector3 screenPoint;
+
 
     [SerializeField] EnemyItem enemydatabase;
     public Image preview;
 
+    //Editor Mode Switch
     public static bool NowStop = true;
+
+    //IDnumber-Teller
     public static int nowID;
 
+    //IDnumber-Teller
+    public static int nowKIND;
+
+    //EditorBlock
     public GameObject block_enemy;
     public GameObject block_terrain;
     public GameObject block_trap;
     public Transform block_player;
+
+    //Dropdown
+    #region
+    //==================================================.
     /*if=enemy
      * Shife = 0
     Gorst = 1
@@ -32,17 +45,19 @@ public class CreateManager : MonoBehaviour
     Wiser = 5
      */
     public Dropdown id_dropdown;
+    //==================================================.
     /*Enemy = 0
      * Trap = 1
      * Player = 2
      * Terrain = 3
      */
     public Dropdown kind_dropdown;
-
+    //==================================================.
+    #endregion
     private int kind = 0;
     private int id = 0;
 
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -67,44 +82,65 @@ public class CreateManager : MonoBehaviour
                 ChangeDropDown();
             }
         };
+
+
         // setting
         if (Input.GetMouseButtonDown(0)) {
-            Debug.Log("fejfeo");
+            Debug.Log("Input-LeftClick");
             this.screenPoint = Camera.main.WorldToScreenPoint(transform.position);
             Vector3 a = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-            //transform.position = Camera.main.ScreenToWorldPoint(a);
-            switch (kind)
+
+            //LogCameraPos(a);
+            if (CheackInLine(a) == true)
             {
-                case 0:
-                    Instantiate(block_enemy, Camera.main.ScreenToWorldPoint(a), Quaternion.identity);
-                    break;
-                case 1:
-                    Instantiate(block_trap, Camera.main.ScreenToWorldPoint(a), Quaternion.identity);
+                //kind choice
+                switch (kind)
+                {
+                    case 0://Enemy
+                        Instantiate(block_enemy, Camera.main.ScreenToWorldPoint(a), Quaternion.identity);
+                        break;
+                    case 1://Trap
+                        Instantiate(block_trap, Camera.main.ScreenToWorldPoint(a), Quaternion.identity);
 
-                    break;
-                case 2:
-                    block_player.position = Camera.main.ScreenToWorldPoint(a);
+                        break;
+                    case 2://Player
+                        block_player.position = Camera.main.ScreenToWorldPoint(a);
 
-                    break;
-                case 3:
-                    Instantiate(block_terrain, Camera.main.ScreenToWorldPoint(a), Quaternion.identity);
-                    break;
+                        break;
+                    case 3://Terrain
+                        Instantiate(block_terrain, Camera.main.ScreenToWorldPoint(a), Quaternion.identity);
+                        break;
+                }
             }
-
-
-
-
-
+            
         }
 
-        //
+        //Update
         nowID = id;
-
+        nowKIND = kind;
     }
+
+    bool CheackInLine(Vector3 pos)
+    {
+        if (pos.x <= 1885 && pos.x >= 28)
+        {
+            if (pos.y < 880)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    
+
+    //Save
     public void SaveStart() {
         adio.PlayOneShot(saveSound);
     }
 
+
+    //Debug
     public void PushButton()
     {
         adio.PlayOneShot(Buttonsound);
@@ -115,6 +151,8 @@ public class CreateManager : MonoBehaviour
         }
         //Debug.Log(id.ToString + "human" + kind.ToString);
     }
+
+    //DropDown
     private void InputDropdown()
     {
         kind = kind_dropdown.value;
@@ -127,5 +165,12 @@ public class CreateManager : MonoBehaviour
         id_dropdown.value = id;
     }
 
-    
+
+    //@Debug
+    void LogCameraPos(Vector3 a)
+    {
+        Debug.Log(a);
+        Debug.Log(Camera.main.ScreenToWorldPoint(a));
+    }
+
 }

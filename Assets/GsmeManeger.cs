@@ -15,6 +15,8 @@ using TMPro;
 
 public class GsmeManeger : MonoBehaviour
 {
+    //@result-Use result menu.
+
     //map[y,x]  で管理してる
     /* 0= なんもない
      * 1=　プレイヤー
@@ -38,10 +40,7 @@ public class GsmeManeger : MonoBehaviour
     public int stageNumber;
 
     public Text EnemyText;
-    public static int EnemyCount;
-
-    //public TextMesh enemyCounter_text;
-    //public TextMesh trapCounter_text;
+    public static int EnemyCount;//@result
 
     public TextMeshProUGUI enemyCounter_text;
 
@@ -53,6 +52,15 @@ public class GsmeManeger : MonoBehaviour
     }
     private int mapnumberMix = 0;
 
+    //@result.
+    public static float TakenDamage = 0;//Other.
+    public float ClearTime = 0;
+    public static int DownEnemy = 0;//Other.
+    public static int UsedTrap = 0;//Other.
+    //text.
+    public TextMeshProUGUI ResultValue;
+    public Image ResultPanel;
+    public TextMeshProUGUI ScoreALL_text;
 
     int[,] map = new  int[9,17] {
         { 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2,2 },
@@ -71,19 +79,34 @@ public class GsmeManeger : MonoBehaviour
 
     public SpriteRenderer background;
     [SerializeField] GameDate gamestageDateBase;
+
+
+    public bool EndGame = false;
+    public bool Use_menuListNumber = true;
+
+    private void ResetStates()
+    {
+        EnemyController.enemyListNumber = 0;
+        EnemyCount = 0;
+        UsedTrap = 0;
+        DownEnemy = 0;
+        TakenDamage = 0;
+        menu.SetActive(false);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        //Reset
-        EnemyController.enemyListNumber = 0;
-        EnemyCount = 0;
+        ResetStates();
 
-        stageNumber = MenuManager.menuStageNumber;
+        if (Use_menuListNumber)
+        {
+            stageNumber = MenuManager.menuStageNumber;
+        }
+
         background.sprite = gamestageDateBase.stagelist[stageNumber].background;
 
-
-        menu.SetActive(false);
-
+        //SetStage 
         for(int y = 4; y >=  -5; y--)
         {
             for(int x = -11; x <= 11; x++)
@@ -128,11 +151,16 @@ public class GsmeManeger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(EndGame == false)
+        {
+            ClearTime += Time.deltaTime;
+
+        }
         PrintEnemyCount();
 
         if(EnemyCount == 0)
         {
-            GameSet();
+            GameSet("clear");
         }
         if(EnemyCount < 0)
         {
@@ -148,6 +176,8 @@ public class GsmeManeger : MonoBehaviour
                 SceneManager.LoadScene("GmeScene");
             }
         }
+
+
         
         
     }
@@ -170,8 +200,58 @@ public class GsmeManeger : MonoBehaviour
     {
         total.EnemyKill = EnemyCount;
         //total.SetTrap
-    }public void GameSet() {
-            menu.SetActive(true);
+    }public void GameSet(string state) {
+        menu.SetActive(true);
+        PrintResult();
+
+        //color
+        if(state == "over") {
+            Debug.Log("GameOver");
+            ResultPanel.color = new Color32(214, 14, 0, 203);
+        }
+        else if(state == "clear")
+        {
+            Debug.Log("GameClear");
+            ResultPanel.color = new Color32(48, 48, 48, 219);
+        }
+
     }
 
+    void PrintResult()
+    {
+        EndGame = true;
+
+        //time useTrap DownEnemy Taken Damege
+        string text = "";
+
+        text += ClearTime.ToString() + "\n";//w
+        text += UsedTrap.ToString() + "\n";//w
+        text += DownEnemy.ToString() + "\n";//w
+        text += TakenDamage.ToString() + "\n";//k
+
+
+
+        //enemyscore or nomal score
+        float Score = 100;
+
+
+        Score += TakenDamage * 1.01f;
+        if (ClearTime > DownEnemy * 5)
+        {
+            Score -= ClearTime * 1.4f;
+        }
+        else
+        {
+            Score += ((DownEnemy * 5) - ClearTime) * 5;
+        }
+        if (UsedTrap > DownEnemy)
+        {
+            Score -= (UsedTrap * 2);
+        }
+
+        //text +=  Score.ToString() + "\n";
+        ScoreALL_text.text =  "ALL "+Score.ToString();
+
+        ResultValue.text = text;
+    }
 }

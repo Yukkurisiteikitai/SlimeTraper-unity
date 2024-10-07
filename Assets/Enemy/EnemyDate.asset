@@ -40,8 +40,8 @@ MonoBehaviour:
     speed: 50
     Exp: 0
     sprite_nomal: {fileID: 21300000, guid: c8ead339611d5424989ebf729989783c, type: 3}
-    sprite_damage: {fileID: 21300000, guid: c8ead339611d5424989ebf729989783c, type: 3}
-    sprite_dealete: {fileID: 21300000, guid: cc57e5abfcee1402d9ca3f4b0cc62798, type: 3}
+    sprite_damage: {fileID: 21300000, guid: 556be209e1e514d28b18ecf665e2aa88, type: 3}
+    sprite_dealete: {fileID: 21300000, guid: 2ad6ae297c35c4971bc489a8d42cace2, type: 3}
     type: 0
   - Id: Joy
     Hp: 15
@@ -50,8 +50,8 @@ MonoBehaviour:
     speed: 17
     Exp: 0
     sprite_nomal: {fileID: 21300000, guid: 9167244fff35843df838b3fe8f37252c, type: 3}
-    sprite_damage: {fileID: 21300000, guid: 1047bc430f4db40bd99794fca12a6dce, type: 3}
-    sprite_dealete: {fileID: 21300000, guid: 5d99d9e98096a493a8811db135804cf0, type: 3}
+    sprite_damage: {fileID: 21300000, guid: 26f8bd8883eec447196a547d04dd50bf, type: 3}
+    sprite_dealete: {fileID: 21300000, guid: 2ad6ae297c35c4971bc489a8d42cace2, type: 3}
     type: 1
   - Id: PixelBat
     Hp: 4000
@@ -60,8 +60,8 @@ MonoBehaviour:
     speed: 32
     Exp: 0
     sprite_nomal: {fileID: 21300000, guid: d751ad344d00f42b3a2eb864319be69a, type: 3}
-    sprite_damage: {fileID: 21300000, guid: d751ad344d00f42b3a2eb864319be69a, type: 3}
-    sprite_dealete: {fileID: 21300000, guid: 5d99d9e98096a493a8811db135804cf0, type: 3}
+    sprite_damage: {fileID: 21300000, guid: 4fb16ce54bb8d40d9b65c6f04cb66c30, type: 3}
+    sprite_dealete: {fileID: 21300000, guid: 6fee65d0910544276ac826f9c9a74b8a, type: 3}
     type: 1
   - Id: wiserd
     Hp: 15
@@ -70,6 +70,16 @@ MonoBehaviour:
     speed: 30
     Exp: 0
     sprite_nomal: {fileID: 21300000, guid: 9b552f3cf00cc4e4db15f4ecafe20fa2, type: 3}
-    sprite_damage: {fileID: 21300000, guid: 9b552f3cf00cc4e4db15f4ecafe20fa2, type: 3}
-    sprite_dealete: {fileID: 21300000, guid: 5d99d9e98096a493a8811db135804cf0, type: 3}
+    sprite_damage: {fileID: 21300000, guid: dbaca06d73d7c4abb82aef797e54f0bf, type: 3}
+    sprite_dealete: {fileID: 21300000, guid: 3f0838de36ab74912bd8a3200f768d1c, type: 3}
+    type: 4
+  - Id: zedifect
+    Hp: 15
+    Attack: 15
+    Defense: 12
+    speed: 30
+    Exp: 0
+    sprite_nomal: {fileID: 21300000, guid: fd76b3874a44c49e4b76a0de48d3f899, type: 3}
+    sprite_damage: {fileID: 21300000, guid: dbaca06d73d7c4abb82aef797e54f0bf, type: 3}
+    sprite_dealete: {fileID: 21300000, guid: 3f0838de36ab74912bd8a3200f768d1c, type: 3}
     type: 4
