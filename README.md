@@ -23,9 +23,6 @@
 -   `Packages/`: Unityのパッケージマネージャによって管理されるライブラリやツールが格納されています。
 
 ## コード規約
-
-ソースコード（`.cs`ファイル）から以下の規約が読み取れます。
-
 -   **命名規則:**
     -   クラス名: `PascalCase` (例: `EnemyController`, `GsmeManeger`)。ファイル名とクラス名は一致しています。
     -   メソッド名: `PascalCase` (例: `PrintEnemyCount`, `DestroyEnemy`)。
